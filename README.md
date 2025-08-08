@@ -1,20 +1,37 @@
 # AeroRef
 
-Index:
-<ul>
-    <li><a href="https://www.refpages.org/about/docs/">Guide on custom components and their options</a></li>
-    <li>
-        To run the pages locally, refer to the guide for your specific Operating System:
-        <ul>
-            <li><a href="#windows">Windows</a></li>
-            <li><a href="#linux">Linux</a></li>
-            <li><a href="#osx">MacOS</a></li>
-        </ul>
-    </li>
-</ul>
+When developing content for these references pages, we suggest that you preview the website on a local server rather than pushing your changes to this repository and looking at them online. Here is how to preview the website locally on MacOS:
+
+* Open a terminal and go to wherever you put the `aeroref` repository.
+* If you haven't done so already, install [Homebrew](https://brew.sh) by running the following command:
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+* As a reminder, it is good practice to [keep Homebrew up to date](https://docs.brew.sh/FAQ#how-do-i-update-my-local-packages) from time to time by running the following two commands:
+```zsh
+brew update
+brew upgrade
+```
+* After you have installed Homebrew and have confirmed that it is up to date, install [NodeJS](https://nodejs.org/) by running the following comamnd:
+```zsh
+brew install node
+```
+* Install all dependencies by running the following command:
+```zsh
+npm install
+```
+* Start the server by running the following command:
+```zsh
+npm run astro dev --verbose
+```
+* Open a browser window and navigate to [http://localhost:4321/](http://localhost:4321/).
+
+Changes you make to the pages will appear live in the browser window.
 
 
-# Running the pages locally
+# Running the pages locally (OUTDATED)
+
+These instructions are outdated and will be removed.
 
 ## <a id="windows">Windows</a>
 
