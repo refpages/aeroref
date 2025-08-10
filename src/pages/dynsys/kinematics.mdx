@@ -1,0 +1,70 @@
+---
+layout: ../../layouts/MDXLayout.astro
+title: Kinematics
+---
+
+# Kinematics
+
+Kinematics is the branch of mechanics concerned with the description of motion without regard to the forces that cause the latter. For a gentle introduction see [intro to dynamics](https://www.mechref.org/dyn/particle_kinematics/).
+
+## Position Vectors
+
+The position of a point $ P $ in three-dimensional space is described by a **position vector** $ \mathbf{r}(t) $ measured from a chosen origin $ O $.  In a fixed 3D Cartesian basis $  \{\mathbf{\hat{e}}_i, \mathbf{\hat{e}}_j, \mathbf{\hat{e}}_k\}  $, that vector can be expressed as
+
+$$
+\mathbf{r}(t) = x(t) \, \mathbf{\hat{e}}_i + y(t) \, \mathbf{\hat{e}}_j + z(t) \, \mathbf{\hat{e}}_k,
+$$
+
+where $  x(t), y(t), z(t)  $ are the time-dependent coefficients of the vector, aka the coordinates of $P$. Here, $\{\mathbf{\hat{e}}_i, \mathbf{\hat{e}}_j, \mathbf{\hat{e}}_k\}$ could be the standard unit basis $\{ (1,0,0)^T, (0,1,0)^T,(0,0,1)^T \}$, for instance.
+The vector $\mathbf{r}(t)$ contains sufficient information to specify the location of point P at any time $t$ .
+
+---
+
+## Velocity Vectors
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+
+Velocities and acceleration vectors only look like this when we assume that the basis vectors $\mathbf{\hat{e}}_{i,j,k}$ do not change with time, i.e.  $\frac{d\mathbf{\hat{e}}_{i,j,k}}{dt} = \mathbf{0}$.
+This is not the case in [accelerated frames](#accelerated-frames).
+
+</CalloutCard>
+</CalloutContainer>
+
+The **velocity vector** $\mathbf{v}(t)$ is the **time derivative** of the position vector:
+
+$$
+\mathbf{v}(t) = \dot{\mathbf{r}}(t) = \frac{d\mathbf{r}(t)}{dt}.
+$$
+
+The vector $  \mathbf{v}(t)  $ represents the instantaneous rate of change of position $\mathbf{r}(t)$ and points in the direction of motion.  
+Assuming the same basis, we can write $\mathbf{v}(t)$ in component form:
+
+$$
+\mathbf{v}(t) = \dot{x}(t) \, \mathbf{\hat{e}}_i + \dot{y}(t) \, \mathbf{\hat{e}}_j + \dot{z}(t) \, \mathbf{\hat{e}}_k.
+$$
+
+Its magnitude, $v(t) = \|\mathbf{v}(t)\| $, is the instantaneous **speed**.
+
+---
+
+## Acceleration Vectors
+
+The **acceleration vector** $\mathbf{a}(t)$ is the **time derivative of the velocity vector**, or equivalently the **second derivative** of the position vector with respect to time:
+
+$$
+\mathbf{a}(t) = \dot{\mathbf{v}}(t) = \ddot{\mathbf{r}}(t).
+$$
+
+In Cartesian component form:
+
+$$
+\mathbf{a}(t) = \ddot{x}(t) \, \mathbf{\hat{e}}_i + \ddot{y}(t) \, \mathbf{\hat{e}}_j + \ddot{z}(t) \, \mathbf{\hat{e}}_k
+$$
+
+Acceleration captures both changes in the **magnitude** and **direction** of the velocity vector.  
+For example, in curvilinear motion (common in orbital mechanics), acceleration may have both tangential and normal components.
+
+
+
+
+

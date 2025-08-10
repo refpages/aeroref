@@ -1,0 +1,163 @@
+---
+layout: ../../layouts/MDXLayout.astro
+title: Accelerated Frames
+---
+
+# Accelerated Frames of Reference
+A coordinate system used to measure the position and motion of objects is referred to as a “frame of reference”. 
+An inertial frame of reference is one where an object at rest or moving at a constant velocity experiences no net external forces (i.e., Newton's first law applies). 
+Most aerospace systems, especially during maneuvers, are more conveniently tackled in non-inertial or accelerated frames, however. 
+Such frames come into play when a vehicle is experiencing rapid changes in velocity, direction, or altitude. 
+For instance, when an aircraft is turning, an observer on the plane experiences centrifugal forces that do not exist in the (quasi) inertial frame of a stationary observer on the surface of the Earth. 
+In these cases, so-called **fictitious** or **frame-based** forces 
+such as centrifugal force (due to rotation) and the Coriolis force (due to moving within a rotating reference frame) arise.
+
+To navigate between inertial and accelerated frames, one must apply transformations that account for frame-based forces.
+
+---
+
+## Kinematics in Accelerated Frames
+
+A time dependent position vector pointing from the origin to a position in the inertial frame A can be defined as
+
+$$
+\mathbf{r}_A = \sum_i r_{A,i} \, \hat{\mathbf{e}}_i,
+$$
+where $A = (\mathbf{\hat{e}}_i, \mathbf{\hat{e}}_j, \mathbf{\hat{e}}_k)$ is the standard unit basis. For instance, a realization in Cartesian 3D of A could read 
+
+$$
+A = \begin{bmatrix}  1 & 0 & 0 \\  0 & 1 & 0 \\  0 & 0 & 1 \end{bmatrix}.
+$$
+
+The same vector in the accelerated frame B reads
+
+$$
+\mathbf{r}_B = \sum_i r_{B,i} \, \hat{\mathbf{u}}_i
+$$
+
+We will assume that the new basis vectors $\hat{\mathbf{u}}_i(t)$ are time dependent and can be expressed in terms of the unit basis vectors $\hat{\mathbf{e}}_i$ such that we can construct a change-of-basis matrix $B$. In Cartesian 3D $B$ would read 
+
+$$
+B(t) = (\hat{\mathbf{u}}_1, \hat{\mathbf{u}}_2, \hat{\mathbf{u}}_3)(t).
+$$
+
+We will further assume that we can express the vector $\mathbf{r}_A$ as
+
+$$
+\mathbf{r}_A = B \, (\mathbf{r}_B +   \mathbf{R}_{B}) = B \, \mathbf{r}'_B,
+$$
+
+where $\mathbf{R}_{B}$ is the vector connecting the origins of the frames $A$ and $B$. To simplfy notation we shall remember that $B=B(t)$ and assume without loss of generatlity that $\mathbf{R}_{B} = 0$  for the remainder of this article.
+
+<Result title="Accelerated Frame to Inertial Frame">
+If both origins are identical, i.e., $\mathbf{R}_{B} = 0$, then
+$$
+\mathbf{r}_A = B \, \mathbf{r}_B,
+$$
+
+The velocity in frame $A$ is
+
+$$
+\mathbf{v}_A = \frac{d\mathbf{r}_A}{dt}  = \dot{B} \, \mathbf{r}_B + B \, \mathbf{v}_B,
+$$
+
+and accelerations can be found by differentiating once more
+
+$$
+\mathbf{a}_A = \ddot{B} \, \mathbf{r}_B + 2 \dot{B} \, \mathbf{v}_B + B \, \mathbf{a}_B.
+$$
+</Result>
+Here we have used the product rule, since both $B$ and $\mathbf{r}_B$ may depend on time.
+We see that **accelerations in the inertial frame $A$ are not simply a linear combination of acceleration in the accelerated frame $B$**. Instead, the time dependent basis vectors contribure extra terms if $\dot{B}\neq0$. 
+
+<Result title="Inertial Frame to Accelerated Frame">
+In order to understand what **velocity and acceleration vectors in the accelerated frame $B$** look like, we can use the fact that positions transform as
+
+$$
+\mathbf{r}_B = B^{-1} \, \mathbf{r}_A
+$$
+
+For velocities matrix calculus tells us that
+
+$$
+\mathbf{v}_B = B^{-1} \, \mathbf{v}_A - B^{-1} \dot{B} B^{-1} \, \mathbf{r}_A.
+$$
+
+
+Finally, accelerations of our test particle in the accelerated frame $B$ read  
+$$
+\mathbf{a}_B = B^{-1} \, \mathbf{a}_A - B^{-1} \ddot{B} B^{-1} \, \mathbf{r}_A - 2 B^{-1} \dot{B} B^{-1} \, \mathbf{v}_A + 2 B^{-1} \dot{B} B^{-1} \dot{B} B^{-1} \, \mathbf{r}_A
+$$
+</Result>
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+
+Note that for $\dot{B} = 0$ velocity and acceleration vectors can be attained through a simple change of basis
+$ \mathbf{v}_B = B^{-1} \, \mathbf{v}_A $, and  
+$\mathbf{a}_B = B^{-1} \, \mathbf{a}_A$.
+</CalloutCard>
+</CalloutContainer>
+
+---
+
+## Rotating Frames and the Transport Theorem
+Matrices that describe rotating coordinate systems can be considered a special case of time dependent frame transformations. 
+Let $\mathbf{r}_A(t)$ be the position vector in the inertial frame, $\mathbf{r}_B(t)$ be the position vector in the rotating frame
+and $B=R(t)$ a rotation matrix from frame B to frame A, then
+$$
+\mathbf{r}_A(t) = R[\omega(t)] \, \mathbf{r}_B(t).
+$$
+Realizations of rotation matrices around the x, y and z axis are 
+$$
+R_x(\omega) = \begin{bmatrix}  1 &  0  & 0 \\ 0 &  \cos(\omega) & -\sin(\omega) \\ 0 &  \sin(\omega) &  \cos(\omega) \end{bmatrix},
+$$
+$$
+R_y(\omega) = \begin{bmatrix} \cos(\omega) &  0  & \sin(\omega) \\0 & 1 & 0 \\  -\sin(\omega) & 0  & \cos(\omega) \end{bmatrix},
+$$
+$$
+R_z(\omega) = \begin{bmatrix} \cos(\omega) & -\sin(\omega) & 0 \\ \sin(\omega)  & \cos(\omega) & 0 \\ 0 &       0  &     1 \end{bmatrix},
+$$
+respectively. Calculating derivatives and inverting the above matrices is possible to calculate velocity and acceleration in $A$ and $B$ frames is possible, but not very convenient.
+The **Transport Theorem** provides a more efficient way to calculate vector components in accelerated (rotating) frames from inertial-frame quantities.
+
+<Result title="Transport Theorem">
+The Transport Theorem states that time derivatives of a vector $\mathbf{f}$ in inertial frames can be expressed in rotating frame quantities as
+$$
+\frac{d}{dt} \mathbf{f}_A = B\, \frac{d}{dt}  \mathbf{f}_B + \boldsymbol{\omega}\times (B\, \mathbf{f}_B).
+$$
+</Result>
+
+How come? The change in time of the unit vectors that make up matrix $B = (\mathbf{\hat{u}}_x,\mathbf{\hat{u}}_y,\mathbf{\hat{u}}_z)$ can be described as
+$$
+\frac{d}{dt}\mathbf{\hat{u}}_x = \boldsymbol{\omega} \times \mathbf{\hat{u}}_x,\quad \frac{d}{dt}\mathbf{\hat{u}}_y = \boldsymbol{\omega} \times \mathbf{\hat{u}}_y,\quad \frac{d}{dt}\mathbf{\hat{u}}_z = \boldsymbol{\omega} \times \mathbf{\hat{u}}_z
+$$
+since the rotation has to happen in the plane orthogonal to $\boldsymbol{\omega}$ and vectors $\mathbf{\hat{u}}_{x,y,z}$. To this we need to add changes of $\mathbf{f}$ in the $B$ frame, and voila. 
+
+Using the Transport Theorem we can derive the well known equations for transforming accelerations and velocities in rotating frames.
+Taking the time derivative of $\mathbf{r}_A$ we find
+$$
+\frac{d\mathbf{r}_A}{dt} = \mathbf{v}_A = \dot{R} \, \mathbf{r}_B + R \, \mathbf{v}_B,
+$$
+and since (matrix component vector wise)
+$$
+\dot{R} = \boldsymbol{\omega} \times R,
+$$
+we have
+$$
+\mathbf{v}_A = \boldsymbol{\omega} \times (R \, \mathbf{r}_B) + R \, \mathbf{v}_B.
+$$
+Differentiating again we find the well known transformation equation for accelerations:
+$$
+\mathbf{a}_A = \dot{\boldsymbol{\omega}} \times (R \, \mathbf{r}_B) + 
+                \boldsymbol{\omega} \times [\boldsymbol{\omega} \times (R \, \mathbf{r}_B)] + 
+                2 \boldsymbol{\omega} \times (R \, \mathbf{v}_B) + R \, \mathbf{a}_B.
+$$
+This above expression contains the following acceleration terms:  
+- Euler: &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $\dot{\boldsymbol{\omega}} \times (R \, \mathbf{r}_B)$,    
+- Centripetal: &nbsp; $\boldsymbol{\omega} \times [\boldsymbol{\omega} \times (R \, \mathbf{r}_B)]$, 
+- Coriolis: &nbsp; &nbsp; &nbsp; &nbsp; $2 \boldsymbol{\omega} \times (R \, \mathbf{v}_B)$, and
+- In Frame: &nbsp; &nbsp;&nbsp; $R \, \mathbf{a}_B$.
+---
+
+

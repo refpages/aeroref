@@ -1,0 +1,58 @@
+---
+layout: ../../layouts/MDXLayout.astro
+title: Newtonian Mechanics
+---
+
+# Newtonian Mechanics
+Newtonian Mechanics is one of the most elemental frameworks for understanding the interplay between motion and forces via ordinary differential equations. In fact, modeling motion via ordinary differential equations directly leads to Newton's three laws of motion.  
+Being able to wield the tools and techniques that underlie Newtonian Mechanics is crucial for aerospace engineers as it allows us to analyze and predict the behavior of aircraft and spacecraft under various conditions. The design, stability, and control of aerospace vehicles, whether in atmospheric flight or in space, are fundamentally governed by the same laws of motion that Newton proposed in the 17th century.
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Newtonian mechanics does have its limitations. In scenarios involving extremely high speeds (close to the speed of light) or when dealing with very small scales where quantum effects become relevant, 
+other approaches need to be considered.
+</CalloutCard>
+</CalloutContainer>
+## Newton's Laws of Motion
+
+1. **Newton's First Law (Inertia)**:  
+   This law states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. 
+
+   $$
+   \sum_i \mathbf{F}_i = 0 \iff \mathbf{r}(t) = \mathbf{a}\, t + \mathbf{b}  
+   $$
+
+2. **Newton's Second Law ($F = ma$)**:  
+   The second law states that an external force is necessary to change the momentum ($\mathbf{p}=m \mathbf{v}$) of an object. 
+   $$
+   \frac{d\mathbf{p}}{dt} = \mathbf{F}
+   $$
+   This law defines the relationship between force, mass, and acceleration.
+   
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+ $\mathbf{F} = m \mathbf{a}$ is and approximation that holds iff $\frac{d}{dt}m = 0$!
+</CalloutCard>
+</CalloutContainer>
+3. **Newton's Third Law (Action–Reaction)**:  
+   This law states that for every action, there is an equal and opposite reaction. 
+   $$
+   \mathbf{F}_{AB} = -\mathbf{F}_{BA}
+   $$
+   This principle is directly related to propulsion systems, such as jet engines and rocket thrusters, which rely on expelling mass in one direction to produce thrust in the opposite direction.
+
+## Equations of motion
+
+The aim of Newtonian Mechanics is it to generate so-called "equations of motion", i.e. sets of differential equations that, when solved describe the trajectories of objects of interest. Depending on the problem those equations can take the form of coupled systems of ordinary differential equations.
+In the simplest cases where we are interested in the dynamics of one point-like particle equations of motion may be derived via
+$$
+ \frac{d\mathbf{p}}{dt} = \sum_i\mathbf{F}_i.
+$$
+
+Assuming $\dot{m}=0$, and $\mathbf{F} = -k^2 \,\mathbf{r}$, the above equation becomes
+$$
+\ddot{\mathbf{r}} = -k^2 \mathbf{r},
+$$
+
+which are are three sets of second order ordinary differential equations, that even permit an analytic solution of the form $\mathbf{r}(t) = \mathbf{c}_1 \cos(k t) + \mathbf{c}_2 \sin(k t)$.
+
+---
