@@ -50,9 +50,9 @@ $$
 where $\mathbf{R}_{B}$ is the vector connecting the origins of the frames $A$ and $B$. To simplfy notation we shall remember that $B=B(t)$ and assume without loss of generatlity that $\mathbf{R}_{B} = 0$  for the remainder of this article.
 
 <Result title="Accelerated Frame to Inertial Frame">
-If both origins are identical, i.e., $\mathbf{R}_{B} = 0$, then
+If both origins are identical, i.e., $\mathbf{R}_{B} = 0$, then the position in frame $A$ can be calculated via
 $$
-\mathbf{r}_A = B \, \mathbf{r}_B,
+\mathbf{r}_A = B \, \mathbf{r}_B.
 $$
 
 The velocity in frame $A$ is
@@ -61,7 +61,7 @@ $$
 \mathbf{v}_A = \frac{d\mathbf{r}_A}{dt}  = \dot{B} \, \mathbf{r}_B + B \, \mathbf{v}_B,
 $$
 
-and accelerations can be found by differentiating once more
+and accelerations in frame $A$ can be found by differentiating once more with respect to time
 
 $$
 \mathbf{a}_A = \ddot{B} \, \mathbf{r}_B + 2 \dot{B} \, \mathbf{v}_B + B \, \mathbf{a}_B.
@@ -74,10 +74,10 @@ We see that **accelerations in the inertial frame $A$ are not simply a linear co
 In order to understand what **velocity and acceleration vectors in the accelerated frame $B$** look like, we can use the fact that positions transform as
 
 $$
-\mathbf{r}_B = B^{-1} \, \mathbf{r}_A
+\mathbf{r}_B = B^{-1} \, \mathbf{r}_A.
 $$
 
-For velocities matrix calculus tells us that
+Velocities are derived via matrix calculus
 
 $$
 \mathbf{v}_B = B^{-1} \, \mathbf{v}_A - B^{-1} \dot{B} B^{-1} \, \mathbf{r}_A.
