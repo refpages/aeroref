@@ -18,13 +18,13 @@ other approaches need to be considered.
    This law states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. 
 
    $$
-   \sum_i \mathbf{F}_i = 0 \iff \mathbf{r}(t) = \mathbf{a}\, t + \mathbf{b}  
+   \sum_i \mathbf{F}_i^{ext} = 0 \iff \mathbf{r}(t) = \mathbf{v}_0\, t + \mathbf{r}_0  
    $$
 
 2. **Newton's Second Law ($F = ma$)**:  
    The second law states that an external force is necessary to change the momentum ($\mathbf{p}=m \mathbf{v}$) of an object. 
    $$
-   \frac{d\mathbf{p}}{dt} = \mathbf{F}
+   \frac{d\mathbf{p}}{dt} = \mathbf{F}^{ext}
    $$
    This law defines the relationship between force, mass, and acceleration.
    
@@ -44,15 +44,22 @@ other approaches need to be considered.
 
 The aim of Newtonian Mechanics is it to generate so-called "equations of motion", i.e. sets of differential equations that, when solved describe the trajectories of objects of interest. Depending on the problem those equations can take the form of coupled systems of ordinary differential equations.
 In the simplest cases where we are interested in the dynamics of one point-like particle equations of motion may be derived via
+<Result title='Newtonian Equations of Motion'>
 $$
- \frac{d\mathbf{p}}{dt} = \sum_i\mathbf{F}_i.
+ \frac{d\mathbf{p}}{dt} = \sum_i\mathbf{F}_i^{ext}.
 $$
+Here, $\mathbf{p}$ is the momentum of the object under investigation, and $\mathbf{F}_i^{ext}$ are external forces acting on the same object.
+</Result>
 
-Assuming $\dot{m}=0$, and $\mathbf{F} = -k^2 \,\mathbf{r}$, the above equation becomes
+## Example: 3D Harmonic Oscillator
+Assuming $\dot{m}=0$, and $\mathbf{F} = -m \,k^2 \,\mathbf{r}$, where $m$ is the mass of the oscillator, $k$ is a constant and $\mathbf{r}$ the displacement with respect to the equilibrium position, the equations of motion can be derived via
 $$
-\ddot{\mathbf{r}} = -k^2 \mathbf{r},
+ \frac{d\mathbf{p}}{dt} = -m\, k^2 \,\mathbf{r}
 $$
-
-which are are three sets of second order ordinary differential equations, that even permit an analytic solution of the form $\mathbf{r}(t) = \mathbf{c}_1 \cos(k t) + \mathbf{c}_2 \sin(k t)$.
+which results in 
+$$
+\ddot{\mathbf{r}} = -k^2 \mathbf{r}.
+$$
+The above equation corresponds to three sets of second order ordinary differential equations, that even permit an analytic solution of the form $\mathbf{r}(t) = \mathbf{c}_1 \cos(k t) + \mathbf{c}_2 \sin(k t)$, with $\mathbf{c}_{1,2}$ being constants of integration.
 
 ---
