@@ -2,4 +2,176 @@
 layout: ../../layouts/MDXLayout.astro
 title: Hamiltonian Mechanics
 ---
-# Under Construction
+
+# Hamiltonian Mechanics
+
+Hamiltonian mechanics is a reformulation of classical mechanics that provides a powerful and elegant framework for understanding the motion of systems. It was developed by William Rowan Hamilton in the 19th century and is based on the principles of energy, as opposed to Newtonian mechanics, which focuses on forces and accelerations. In Hamiltonian mechanics, the dynamics of a system are described in terms of generalized coordinates $q_i$ and their conjugate momenta $p_i$, rather than in terms of positions and velocities directly.
+
+The central object in Hamiltonian mechanics is the **Hamiltonian** function $H(q_i, p_i, t)$, which typically represents the total energy of the system, including both kinetic and potential energy:
+
+$$
+H = T + V,
+$$
+
+where $T$ is the kinetic energy and $V$ is the potential energy of the system. The evolution of the system is governed by Hamilton's equations, which are first-order differential equations:
+
+$$
+\dot{q}_i = \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial q_i}.
+$$
+
+These equations describe how the generalized coordinates $q_i$ and generalized momenta $p_i$ evolve over time.
+
+Hamiltonian mechanics is especially useful in systems where the generalized momenta are not simply the mass times the velocity, such as in the presence of electromagnetic fields, 
+or in systems with constraints. When using generalized coordinates ($q_i$) it is sometimes convenient to derive the Hamiltonian via the corresponding Lagrangian, i.e.  
+$$
+H = \sum_i \dot{q}_i\, p_i - L.
+$$
+Generalized velocities ($\dot{q}_i$), and, thus, the Lagrangian, can be easier to calculate directly, since they are simple time derivatives of the generalized coordinates $q_i$.
+The above [Legendre transformation](https://en.wikipedia.org/wiki/Legendre_transformation#Definition_in_physical_contexts) takes care of converting generalized velocities into generalized momenta.
+Since
+$$
+\frac{\partial H}{\partial \dot{q}_i} = \frac{\partial }{\partial \dot{q}_i} \left(\sum_i \dot{q}_i\, p_i - L\right) = p_i - \frac{\partial L}{\partial \dot{q}_i}= 0,
+$$
+where the last equality comes from the fact that the Hamiltonian only depends on generalized momenta and not generalized velocities. Using this result we find
+$$
+p_i = \frac{\partial L}{\partial \dot{q}_i}.
+$$
+as a way to calculate generalized momenta from the Hamiltonian.
+One of the key advantages of Hamiltonian mechanics is its symmetry and the insight it provides into conservation laws. 
+[Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem) shows that symmetries in the Hamiltonian often correspond to conserved quantities, such as energy, linear momentum, or angular momentum. 
+This provides a deeper understanding of the system's behavior beyond what Newtonian mechanics offers.
+
+For instance, an ignorable coordinate (or cyclic coordinate) is a generalized coordinate $q_i$ that does not explicitly appear in the Hamiltonian $H(q_i, p_i, t)$. 
+If $\frac{\partial H}{\partial q_i} = 0$, then $q_i$ is ignorable, and the corresponding conjugate momentum $p_i$ is conserved ($\dot{p}_i = 0$). Ignorable coordinates indicate a symmetry in the system and lead directly to conservation laws, such as conservation of linear or angular momentum.
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Hamiltonian mechanics is a versatile tool, particularly in fields like celestial mechanics, space propulsion (e.g., ion thrusters), and control systems. Since Hamilton's equations of motion describe the system evolution directly in phase-space. 
+they provide a systematic way of analyzing complex dynamical systems. 
+</CalloutCard>
+</CalloutContainer>
+---
+
+## Example: Charged Particle in an Electromagnetic Field
+
+Consider a particle with mass $m$ and electric charge $Q$ moving in the presence of a static (independent of time) electromagnetic field. The position of the particle is denoted by $\mathbf{r} = (x, y, z)$. The electromagnetic field is described by a magnetic field $\mathbf{B}$ and an electric field $\mathbf{E}$.
+The interaction between a charged particle and the electromagnetic field is governed by the **Lorentz force**:
+
+$$
+\mathbf{F} = Q\,(\mathbf{E} + \mathbf{v} \times \mathbf{B}),
+$$
+
+where $\mathbf{v}$ is the velocity of the particle.
+
+Our aim is to derive the correct equations of motion using generalized coordinates and momenta, which are influenced by the electromagnetic field. We shall neglect the effect of the charge on the field.
+
+### Step 1: Defining the Lagrangian
+
+The **Lagrangian** $L$ for a charged particle in an electromagnetic field is:
+
+$$
+L = \frac{1}{2} m \mathbf{v}^2 + Q\, (\mathbf{v} \cdot \mathbf{A} -  \Phi),
+$$
+
+where $\mathbf{v} = \dot{\mathbf{r}}$ is the velocity of the particle, $\mathbf{A}$ is the vector potential, related to the magnetic field by $\mathbf{B} = \nabla \times \mathbf{A}$, and $\Phi$ is the scalar potential, related to the electric field by $\mathbf{E} = -\nabla \Phi - \frac{\partial \mathbf{A}}{\partial t}$.  
+
+### Step 2: Generalized Momenta
+
+The generalized momenta $\mathbf{p} = (p_x, p_y, p_z)$ conjugate to the position $\mathbf{r} = (x, y, z)$ are obtained by:
+
+$$
+p_i = \frac{\partial L}{\partial \dot{r}_i}
+$$
+
+Substituting the Lagrangian, we get
+
+$$
+p_i = m \dot{r}_i + Q\, A_i.
+$$
+
+Thus, the generalized momenta are
+
+$$
+\mathbf{p} = m \mathbf{v} + Q\, \mathbf{A}.
+$$
+
+This shows that the generalized momenta differ from the usual linear momenta $m \mathbf{v}$ due to the presence of the electromagnetic field through the vector potential $\mathbf{A}$.
+
+### Step 3: Hamiltonian
+
+The **Hamiltonian** $H$ is related to the Lagrangian by:
+
+$$
+H = \sum_i \dot{r}_i p_i - L
+$$
+
+Substituting the Lagrangian 
+
+$$
+H = \mathbf{v} \cdot (m \mathbf{v} + Q\, \mathbf{A}) - \left( \frac{1}{2} m \mathbf{v}^2 + Q\, \mathbf{v} \cdot \mathbf{A} - Q\, \Phi \right),
+$$
+and simplifying
+<Result title="Hamiltonian">
+$$
+H = \frac{1}{2} m \mathbf{v}^2 + Q\, \Phi = \frac{1}{2m} \left( \mathbf{p} - Q\, \mathbf{A} \right)^2 + Q\, \Phi
+$$
+</Result>
+This is the Hamiltonian for a charged particle in an electromagnetic field, expressed in terms of the generalized momenta $\mathbf{p}$, the vector potential $\mathbf{A}$, and the scalar potential $\Phi$.
+
+### Step 4: Hamilton's Equations of Motion
+
+Using Hamilton's equations:
+
+$$
+\dot{r}_i = \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial r_i}
+$$
+
+the equation for the position is:
+
+$$
+\dot{\mathbf{r}} = \frac{\partial H}{\partial \mathbf{p}} = \frac{1}{m} (\mathbf{p} - Q\, \mathbf{A})
+$$
+
+This shows that the velocity $\mathbf{v} = \dot{\mathbf{r}}$ is related to the generalized momenta by:
+
+$$
+\mathbf{v} = \frac{1}{m} (\mathbf{p} - Q\, \mathbf{A})
+$$
+
+This is the inverse relationship between the generalized momenta and the velocity.
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+In this system, the generalized momenta $\mathbf{p}$ are not simply $m \mathbf{v}$, as they include a contribution from the vector potential $\mathbf{A}$ (i.e., the electromagnetic field). This leads to richer dynamics, particularly in systems like charged particles moving in space, where both the electric and magnetic fields significantly affect the motion. In aerospace applications, such as spacecraft in magnetized plasma environments, understanding this distinction is critical for accurate modeling and control.
+</CalloutCard>
+</CalloutContainer>
+
+The equation for the momenta is:
+
+$$
+\dot{\mathbf{p}} = -\frac{\partial H}{\partial \mathbf{r}} = -\frac{Q\,}{m} \left( \mathbf{p} - Q\, \mathbf{A} \right) \cdot \nabla \mathbf{A} - Q\, \nabla \Phi
+$$
+
+Using the fact that $\nabla \mathbf{A}$ gives the magnetic field $\mathbf{B}$ and $\nabla \Phi$ gives the electric field $\mathbf{E}$, we can rewrite this as:
+
+$$
+\dot{\mathbf{p}} = Q\, \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
+$$
+
+which is the familiar **Lorentz force law** for the dynamics of a charged particle in an electromagnetic field.
+
+### Equations of Motion
+
+The Hamiltonian dynamics of the charged particle in the electromagnetic field yield the following equations of motion:
+<Result title="Equations of Motion">
+1. The velocity is related to the generalized momentum:
+
+$$
+\dot{\mathbf{r}} = \frac{1}{m} (\mathbf{p} - Q\, \mathbf{A})
+$$
+
+2. The generalized momentum evolves according to:
+
+$$
+\dot{\mathbf{p}} = Q\, \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
+$$
+</Result>
