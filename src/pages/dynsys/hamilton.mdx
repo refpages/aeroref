@@ -5,15 +5,17 @@ title: Hamiltonian Mechanics
 
 # Hamiltonian Mechanics
 
-Hamiltonian mechanics is a reformulation of classical mechanics that provides a powerful and elegant framework for understanding the motion of systems. It was developed by William Rowan Hamilton in the 19th century and is based on the principles of energy, as opposed to Newtonian mechanics, which focuses on forces and accelerations. In Hamiltonian mechanics, the dynamics of a system are described in terms of generalized coordinates $q_i$ and their conjugate momenta $p_i$, rather than in terms of positions and velocities directly.
+Hamiltonian mechanics is a reformulation of classical mechanics that provides a powerful and elegant framework for understanding the motion of systems. 
+It was developed by Sir William Rowan Hamilton in the 19th century and is based on the principles of energy, as opposed to Newtonian mechanics, 
+which focuses on forces and accelerations. In Hamiltonian mechanics, the dynamics of a system are described in terms of generalized coordinates $q_i$ and their conjugate momenta $p_i$, i.e. in [phase space](https://en.wikipedia.org/wiki/Phase_space), rather than in terms of positions and velocities directly ([state space](https://aero.refpages.org/control/state-space-models/#what-is-a-state-space-model)).
 
-The central object in Hamiltonian mechanics is the **Hamiltonian** function $H(q_i, p_i, t)$, which typically represents the total energy of the system, including both kinetic and potential energy:
+The central object in Hamiltonian mechanics is the **Hamiltonian** function $H(q_i, p_i, t)$, 
+which typically represents the total energy of the system, including kinetic ($T$) and potential energy ($V$):
 
 $$
-H = T + V,
+H = T + V.
 $$
-
-where $T$ is the kinetic energy and $V$ is the potential energy of the system. The evolution of the system is governed by Hamilton's equations, which are first-order differential equations:
+The evolution of the system is governed by Hamilton's equations, which are first-order differential equations:
 
 $$
 \dot{q}_i = \frac{\partial H}{\partial p_i}, \quad \dot{p}_i = -\frac{\partial H}{\partial q_i}.
@@ -22,26 +24,27 @@ $$
 These equations describe how the generalized coordinates $q_i$ and generalized momenta $p_i$ evolve over time.
 
 Hamiltonian mechanics is especially useful in systems where the generalized momenta are not simply the mass times the velocity, such as in the presence of electromagnetic fields, 
-or in systems with constraints. When using generalized coordinates ($q_i$) it is sometimes convenient to derive the Hamiltonian via the corresponding Lagrangian, i.e.  
+or in systems with constraints. When using generalized coordinates ($q_i$) it can be convenient to derive the Hamiltonian via the corresponding Lagrangian, i.e.  
 $$
 H = \sum_i \dot{q}_i\, p_i - L.
 $$
-Generalized velocities ($\dot{q}_i$), and, thus, the Lagrangian, can be easier to calculate directly, since they are simple time derivatives of the generalized coordinates $q_i$.
+Generalized velocities ($\dot{q}_i$), and, thus, the Lagrangian, can be easier to calculate directly, since they feature simple time derivatives of the generalized coordinates $q_i$.
 The above [Legendre transformation](https://en.wikipedia.org/wiki/Legendre_transformation#Definition_in_physical_contexts) takes care of converting generalized velocities into generalized momenta.
-Since
+Taking the partial of the Hamiltonian with respect to the generalized velocities yields
 $$
 \frac{\partial H}{\partial \dot{q}_i} = \frac{\partial }{\partial \dot{q}_i} \left(\sum_i \dot{q}_i\, p_i - L\right) = p_i - \frac{\partial L}{\partial \dot{q}_i}= 0,
 $$
-where the last equality comes from the fact that the Hamiltonian only depends on generalized momenta and not generalized velocities. Using this result we find
+where the last equality comes from the fact that the Hamiltonian only depends on generalized momenta and not on generalized velocities. Using this result we find
 $$
 p_i = \frac{\partial L}{\partial \dot{q}_i}.
 $$
-as a way to calculate generalized momenta from the Hamiltonian.
+as a way to calculate generalized momenta from the Lagrangian.
+
 One of the key advantages of Hamiltonian mechanics is its symmetry and the insight it provides into conservation laws. 
-[Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem) shows that symmetries in the Hamiltonian often correspond to conserved quantities, such as energy, linear momentum, or angular momentum. 
+[Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem) shows that **symmetries in the Hamiltonian** often correspond to **conserved quantities**, such as energy, linear momentum, or angular momentum. 
 This provides a deeper understanding of the system's behavior beyond what Newtonian mechanics offers.
 
-For instance, an ignorable coordinate (or cyclic coordinate) is a generalized coordinate $q_i$ that does not explicitly appear in the Hamiltonian $H(q_i, p_i, t)$. 
+For instance, an **ignorable coordinate** (or cyclic coordinate) is a generalized coordinate $q_i$ that does not explicitly appear in the Hamiltonian $H(q_i, p_i, t)$. 
 If $\frac{\partial H}{\partial q_i} = 0$, then $q_i$ is ignorable, and the corresponding conjugate momentum $p_i$ is conserved ($\dot{p}_i = 0$). Ignorable coordinates indicate a symmetry in the system and lead directly to conservation laws, such as conservation of linear or angular momentum.
 
 <CalloutContainer slot="cards">
@@ -141,7 +144,8 @@ $$
 This is the inverse relationship between the generalized momenta and the velocity.
 <CalloutContainer slot="cards">
 <CalloutCard title="Heads up!">
-In this system, the generalized momenta $\mathbf{p}$ are not simply $m \mathbf{v}$, as they include a contribution from the vector potential $\mathbf{A}$ (i.e., the electromagnetic field). This leads to richer dynamics, particularly in systems like charged particles moving in space, where both the electric and magnetic fields significantly affect the motion. In aerospace applications, such as spacecraft in magnetized plasma environments, understanding this distinction is critical for accurate modeling and control.
+In this system, the generalized momenta $\mathbf{p}$ are not simply $m \mathbf{v}$, as they include a contribution from the vector potential $\mathbf{A}$ (i.e., the electromagnetic field). 
+Understanding this distinction is critical for accurate modeling and control.
 </CalloutCard>
 </CalloutContainer>
 
