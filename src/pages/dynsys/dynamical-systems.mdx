@@ -2,4 +2,87 @@
 layout: ../../layouts/MDXLayout.astro
 title: Dynamical Systems Theory
 ---
-# Under Construction
+# Introduction to Dynamical Systems Theory 
+
+Dynamical systems theory is a mathematical framework used to describe the evolution of systems over time. 
+A dynamical system is characterized by a set of differential equations that describe how the state of a system evolves based on its current state and external inputs. 
+Mathematically, a dynamical system is expressed as a set of **first-order ordinary differential equations** (ODEs):
+$$
+\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t),
+$$
+where $ \mathbf{x}(t) \in \mathbb{R}^n $ is the **state vector** representing the system's state at time $ t $, 
+and $\mathbf{f}$ is a vector-valued, often nonlinear function that determines how the state evolves based on the current state and time.
+The state $\mathbf{x}$ generally includes position and velocity, but it can also encompass orientation, and angular velocity, or generalized coordinates and momenta, etc.
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Dynamical systems theory is equally capable of dealing with ordinary differential equations beyond first order.
+Formally an $n$-th order ordinary differential equation  
+
+$$
+y^{(n)} = f\big(t, y, y', y'', \dots, y^{(n-1)}\big),
+$$  
+can be rewrtitten as a **system of $n$ first-order ODEs**
+$$
+\begin{cases}
+x_1' = x_2 \\
+x_2' = x_3 \\
+\ \vdots \\
+x_{n-1}' = x_n \\
+x_n' = f(t, x_1, x_2, \dots, x_n)
+\end{cases}
+$$  
+through introducing a set of new variables  
+$$
+x_1 = y, \quad x_2 = y', \quad x_3 = y'', \quad \dots \quad x_n = y^{(n-1)}.
+$$  
+</CalloutCard>
+</CalloutContainer>
+
+For specific initial conditions solutions to the above equations can most often be found either by using analytical or numerical methods for ODEs.
+In contrast, **dynamical systems theory** aims at understanding **how the entire system behaves** both qualitatively and quanitatively, which includes - but is not limited to - potentially stable or unstable behavior, equilibria in state space, and/or strong dependence of the system behavoir on parameters (e.g. bifurcations).  
+
+
+## Equilibrium Points in Dynamical Systems
+Understanding equilibrium points is a cornerstone of dynamical systems theory, offering a window into both local and global properties of complex systems.
+An **equilibrium point** (or **fixed point**) is a state of the system where the evolution ceases, meaning the system remains at rest if it starts at that point. For a system described by  
+
+$$
+\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t),
+$$  
+
+an equilibrium point $\mathbf{x}^*$ satisfies  
+
+$$
+\dot{\mathbf{x}}^*= \mathbf{f}(\mathbf{x}^*, t) = 0.
+$$  
+
+Equilibrium points are central to understanding the long-term behavior of dynamical systems because they often organize the motion of nearby trajectories. By analyzing their stability, one can predict whether small deviations from equilibrium will decay over time, grow uncontrollably, or persist in a neutral fashion.
+
+Near an equilibrium point, it is common to linearize the system by expanding $\mathbf{f}(\mathbf{x})$ around $\mathbf{x}^*$:  
+
+$$
+\frac{d}{dt}\mathbf{\xi} \approx \mathbf{A}(\mathbf{x}^*) \mathbf{\xi} ,
+$$  
+
+where $\mathbf{\xi}=(\mathbf{x} - \mathbf{x}^*)$ the state relative to the equilibrium point $\mathbf{x}^*$, and $\mathbf{A}(\mathbf{x}^*)$ is the **Jacobian matrix** evaluated at the equilibrium:
+
+$$
+\mathbf{A}_{ij}(\mathbf{x}^*) = \frac{\partial f_i}{\partial x_j} \Big|_{\mathbf{x} = \mathbf{x}^*}.
+$$  
+
+The eigenvalues of $\mathbf{A}(\mathbf{x}^*)$ determine the nature of the equilibrium. 
+If all eigenvalues have negative real parts, the equilibrium is stable and nearby trajectories are attracted to it. 
+If any eigenvalue has a positive real part, the equilibrium is unstable, causing nearby trajectories to diverge. 
+Equilibria with eigenvalues that have zero real parts require further analysis.
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Studying equilibrium points provides deep insight into the qualitative behavior of a system. 
+They identify the location of steady states and reveal how small changes in parameters can lead to bifurcations or qualitative shifts in dynamics, 
+and guide the design of control strategies aimed at stabilizing desired states. 
+Moreover, equilibria often shape the global organization of trajectories in nonlinear systems, 
+with stable and unstable manifolds acting as pathways that govern the flow of the system.
+</CalloutCard>
+</CalloutContainer>
+

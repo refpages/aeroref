@@ -3,7 +3,7 @@ layout: ../../layouts/MDXLayout.astro
 title: Lagrangian Mechanics
 ---
 # Lagrangian Mechanics
-Apart from Newton's laws, alternative approaches to deriving equations of motion were developed in the 18th century. 
+Apart from Newton's laws, alternative approaches to deriving equations of motion were developed in the 18th and 19th century. 
 These are now referred to as **Lagrangian** (after Joseph Louis Lagrange) and **Hamiltonian** (after Sir William Rowan Hamilton) mechanics. 
 Both approaches follow from a deep-rooted principle of nature — the **principle of stationary action**. 
 
@@ -15,7 +15,7 @@ The principle of stationary action encapsulates **Newton’s laws of motion** in
 In nature, systems tend to follow paths that extremize (minimize or maximize) certain quantities. For example, light follows the path of extremal time (Fermat's principle).
 
 Mechanical systems tend to follow the path that extremizes the action, which can be understood as **an optimization principle in nature**. 
-Just as systems naturally move toward states of lower energy (a marble rolls to the lowest point in a bowl), the action minimizes in a way that balances kinetic and potential energy. 
+Just as systems naturally move toward states of lower energy, the action minimizes in a way that balances kinetic and potential energy. 
 This balance ensures that the system evolves in the most “economical” way, subject to the constraints of the physical forces acting on it.
 In this sense, the path of least action, for example, represents the most efficient way for the system to move from one state to another. 
 The principle of stationary action provides a unifying framework for understanding the dynamics of systems and plays a crucial role in all modern physical theories.
@@ -43,10 +43,13 @@ where:
 
 Generalized positions and velocities can be vectors. In systems with multiple particles, more than one generalized coordinate vector may be needed, with the exact number determined by the constraints.
 
-The principle of least action states that the actual path taken by the particle minimizes (or extremizes) the action $S$. The action is a **functional** — a “function of functions.” 
+The principle of least action states that the actual path taken by the particle minimizes (or extremizes) the action $S$. 
+The action is a **functional** — a “function of functions.”  When demand the action be stationary under variations in the paths $\mathbf{q}(t)$, i.e., $\delta S = 0$, 
+we arrive - after some algebra - at the [Euler-Lagrage equations](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation).
 
 ## Euler–Lagrange Equations
-The principle of least action is mathematically related to the **Euler–Lagrange equations**, which describe the equations of motion for a system. When we vary the action and apply the condition that it is minimized (i.e., $\delta S = 0$), we obtain:
+The principle of least action is mathematically related to the **Euler–Lagrange equations**, which describe the equations of motion for a system. 
+
 <Result title="Euler-Lagrange equations">
 $$
 \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_i} \right) - \frac{\partial L}{\partial q_i} = 0
