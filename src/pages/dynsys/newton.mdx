@@ -62,4 +62,58 @@ $$
 $$
 The above equation corresponds to three sets of second order ordinary differential equations, that even permit an analytic solution of the form $\mathbf{r}(t) = \mathbf{c}_1 \cos(k t) + \mathbf{c}_2 \sin(k t)$, with $\mathbf{c}_{1,2}$ being constants of integration.
 
+## Integrals of Motion in Newtonian Dynamics
+
+The concept of **integrals of motion** refers to quantities that remain constant as a system evolves over time. These quantities are derived from the fundamental laws governing the motion of particles and rigid bodies, particularly Newton's laws and conservation principles such as energy, momentum, and angular momentum. Emmy Noether (1882–1935) pioneered the idea that conserved quantities such as energy or angular momentum are a consequence of symmetries in the system.
+
+The term "ten integrals of motion" typically refers to the ten independent conserved quantities that arise in the most general mechanical system with a fixed number of particles in three-dimensional space. These integrals fall into three main categories:
+
+- **Linear Motion (Translational Symmetries)**: Six integrals describe the conservation of linear and angular momentum for the entire system.  
+- **Angular Motion (Rotational Symmetries)**: Three integrals describe the orientation or rotational motion of the system, in particular the length and orientation of the system's angular momentum.  
+- **Mechanical Energy**: The conservation of mechanical energy is linked to the time-reversibility of a system. Friction is a counterexample, because the arrow of time determines whether mechanical energy is converted into heat (internal energy) or vice versa.
+
+Each integral of motion corresponds to a physical law or symmetry in the system. These conserved quantities allow engineers and physicists to simplify the analysis of complex dynamical systems, such as the flight trajectory of an aircraft or the orbit of a satellite. Understanding these integrals is particularly important in systems with minimal external forces, where such quantities remain conserved over time.
+
+### Linear Momentum (3 Integrals)
+
+Linear momentum is conserved in a system where there are no external forces acting. For a particle or system of particles, the three components of linear momentum in the $x$-, $y$-, and $z$-directions are:
+
+$$
+P_x = m v_x, \quad P_y = m v_y, \quad P_z = m v_z
+$$
+
+These correspond to the translational symmetry of space, meaning the laws of physics do not change if the system is displaced in any direction.
+
+### Angular Momentum (3 Integrals)
+
+Angular momentum is conserved in a system with no external torques. The three components of angular momentum about the $x$-, $y$-, and $z$-axes are:
+
+$$
+L_x = y p_z - z p_y, \quad L_y = z p_x - x p_z, \quad L_z = x p_y - y p_x
+$$
+
+These correspond to the rotational symmetry of space, implying that the physics remains the same if the system is rotated.
+
+### Energy (1 Integral)
+
+The total mechanical energy (kinetic plus potential) of a system is conserved in the absence of non-conservative forces (like friction or air resistance). 
+The conservation of mechanical energy can be expressed as:
+
+$$
+E = T + V
+$$
+
+where $T$ is the kinetic energy and $V$ is the potential energy. 
+Energy conservation corresponds to the time-invariance of the system—if the system does not explicitly depend on time, energy is conserved.
+
+### Center of Mass Motion (3 Integrals)
+
+The motion of the center of mass of a system of particles follows the same laws of motion as a single particle. The position of the center of mass in the $x$-, $y$-, and $z$-directions can be described by three integrals of motion. For a system of particles with masses $m_i$ and positions $r_i$, the center of mass is given by:
+
+$$
+R_{\text{cm}} = \frac{1}{M} \sum m_i r_i
+$$
+
+where $M$ is the total mass of the system.
+
 ---

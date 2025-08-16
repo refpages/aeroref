@@ -49,6 +49,17 @@ This provides a deeper understanding of the system's behavior beyond what Newton
 For instance, an **ignorable coordinate** (or cyclic coordinate) is a generalized coordinate $q_i$ that does not explicitly appear in the Hamiltonian $H(q_i, p_i, t)$. 
 If $\frac{\partial H}{\partial q_i} = 0$, then $q_i$ is ignorable, and the corresponding conjugate momentum $p_i$ is conserved ($\dot{p}_i = 0$). Ignorable coordinates indicate a symmetry in the system and lead directly to conservation laws, such as conservation of linear or angular momentum.
 
+The Hamiltonian itself offers a convenient way to understand whether the system it models conserves the total energy. 
+The Hamiltonian represents the total mechanical energy in the system. If the energy changes with time,
+$$
+\frac{dH(p_i,q_i,t)}{dt} =  \frac{\partial H}{\partial p_i}\frac{dp_i }{dt} + \frac{\partial H}{\partial q_i}\frac{dq_i }{dt} + \frac{\partial H}{\partial t}. 
+$$ 
+Inserting Hamilton's equations for $\dot{p}_i$ and $\dot{q}_i$ we find
+$$
+\frac{dH(p_i,q_i,t)}{dt} =  \frac{\partial H}{\partial t}. 
+$$ 
+This means, if the Hamiltonian does not explicitly depend on time, mechanical energy is conserved, since $\frac{\partial H}{\partial t}=0$ implies $\dot{H}=0$.
+
 <CalloutContainer slot="cards">
 <CalloutCard title="Heads up!">
 Hamiltonian mechanics is a versatile tool, particularly in fields like celestial mechanics, space propulsion (e.g., ion thrusters), and control systems. Since Hamilton's equations of motion describe the system evolution directly in phase-space. 
@@ -181,3 +192,5 @@ $$
 \dot{\mathbf{p}} = Q\, \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
 $$
 </Result>
+
+Since the Hamiltonian does not depend explicitly on time, we also know that the energy in this system is conserved.
