@@ -2,7 +2,7 @@
 layout: ../../layouts/MDXLayout.astro
 title: Dynamical Systems Theory
 ---
-# Introduction to Dynamical Systems Theory 
+# Dynamical Systems Theory 
 
 Dynamical systems theory is a mathematical framework used to describe the evolution of systems over time. 
 A dynamical system is characterized by a set of differential equations that describe how the state of a system evolves based on its current state and external inputs. 
@@ -34,7 +34,7 @@ x_n' = f(t, x_1, x_2, \dots, x_n)
 $$  
 through introducing a set of new variables  
 $$
-x_1 = y, \quad x_2 = y', \quad x_3 = y'', \quad \dots \quad x_n = y^{(n-1)}.
+x_1 = y,\, x_2 = y', \, x_3 = y'', \, \dots \, x_n = y^{(n-1)}.
 $$  
 </CalloutCard>
 </CalloutContainer>
@@ -43,7 +43,16 @@ For specific initial conditions solutions to the above equations can most often 
 In contrast, **dynamical systems theory** aims at understanding **how the entire system behaves** both qualitatively and quanitatively, which includes - but is not limited to - potentially stable or unstable behavior, equilibria in state space, and/or strong dependence of the system behavoir on parameters (e.g. bifurcations).  
 
 
-## Equilibrium Points in Dynamical Systems
+## Equilibrium Points
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Studying equilibrium points provides deep insight into the qualitative behavior of a system. 
+They identify the location of steady states and often shape the global organization of trajectories in nonlinear systems, 
+with stable and unstable manifolds acting as pathways that govern the flow of the system. 
+As such studying equilibria in dynamical systems can guide the design of control strategies aimed at stabilizing desired states. 
+</CalloutCard>
+</CalloutContainer>
+
 Understanding equilibrium points is a cornerstone of dynamical systems theory, offering a window into both local and global properties of complex systems.
 An **equilibrium point** (or **fixed point**) is a state of the system where the evolution ceases, meaning the system remains at rest if it starts at that point. For a system described by  
 
@@ -59,30 +68,132 @@ $$
 
 Equilibrium points are central to understanding the long-term behavior of dynamical systems because they often organize the motion of nearby trajectories. By analyzing their stability, one can predict whether small deviations from equilibrium will decay over time, grow uncontrollably, or persist in a neutral fashion.
 
+## Linearization
 Near an equilibrium point, it is common to linearize the system by expanding $\mathbf{f}(\mathbf{x})$ around $\mathbf{x}^*$:  
 
 $$
-\frac{d}{dt}\mathbf{\xi} \approx \mathbf{A}(\mathbf{x}^*) \mathbf{\xi} ,
+\frac{d}{dt}\boldsymbol{\xi} \approx \mathbf{A}(\mathbf{x}^*) \boldsymbol{\xi} ,
 $$  
 
-where $\mathbf{\xi}=(\mathbf{x} - \mathbf{x}^*)$ the state relative to the equilibrium point $\mathbf{x}^*$, and $\mathbf{A}(\mathbf{x}^*)$ is the **Jacobian matrix** evaluated at the equilibrium:
+where $\mathbf{\xi}=(\mathbf{x} - \mathbf{x}^*)$ represents the state relative to the equilibrium point $\mathbf{x}^*$, and $\mathbf{A}(\mathbf{x}^*)$ is the **Jacobian matrix** evaluated at the equilibrium:
 
 $$
 \mathbf{A}_{ij}(\mathbf{x}^*) = \frac{\partial f_i}{\partial x_j} \Big|_{\mathbf{x} = \mathbf{x}^*}.
 $$  
 
-The eigenvalues of $\mathbf{A}(\mathbf{x}^*)$ determine the nature of the equilibrium. 
+The power of linarization becomes evident when we recall that a (full rank) system of linear ODEs permits a general solution of the form
+$$
+\boldsymbol{\xi}(t) = \sum_i c_i \boldsymbol{\nu}_i \,e^{\lambda_i t}, 
+$$
+where $\boldsymbol{\nu}_i$ are eigenvectors of $\mathbf{A}$, $\lambda_i$ are the corresponding eigenvalues and $c_i$ are constants. 
+Since the solution is a composition of exponentials of eigenvalues and directions given by eigenvectors, it is the eigenvalues of $\mathbf{A}(\mathbf{x}^*)$ that determine the nature of the equilibrium. 
 If all eigenvalues have negative real parts, the equilibrium is stable and nearby trajectories are attracted to it. 
 If any eigenvalue has a positive real part, the equilibrium is unstable, causing nearby trajectories to diverge. 
 Equilibria with eigenvalues that have zero real parts require further analysis.
 
+## Stable and Unstable Manifolds
+A common scenario is that the matrix $\mathbf{A}$ of the linearized system has some positive and some negative eigenvalues.  For example
+$$
+\dot{\boldsymbol{\xi}} \approx \mathbf{A}(\mathbf{x}^*) \boldsymbol{\xi} ,
+$$  
+with 
+$$
+\mathbf{A}(\mathbf{x}^*) = \begin{bmatrix} \frac{1}{2} & -1 \\ -1 & \frac{1}{2}\end{bmatrix},
+$$ 
+results in $\lambda_1 = \frac{3}{2}$ and $\lambda_2 = -\frac{1}{2}$ as well as $\boldsymbol{\nu}_1 = (-1,1)^T$ and $\boldsymbol{\nu}_2 = (1,1)^T$.
+In that case, the solutions are a composit of subspaces, for example
+$$
+\boldsymbol{\xi}(t) =  c_1 \begin{pmatrix}-1 \\ 1 \end{pmatrix} \,e^{\frac{3}{2} t} +  c_2 \begin{pmatrix}1 \\ 1 \end{pmatrix} \,e^{-\frac{1}{2} t}
+$$
+In this context, $W^s(x^*)=c_1 (-1,1)^T \,e^{3t/2}$ would correspond to the local representation of the **unstable** manifold and $W^u(x^*) = c_2 (1,1)^T \,e^{-t/2}$ to the **stable manifold** of a hyperbolic equilibrium point.
+
+Formally, if $\mathbf{x}(t)$ is a solution to the dynamical system with initial condition $\mathbf{x}_0$:
+
+- **Stable manifolds** $\left(W^s\right)$ correspond to subspaces of a dynamical system where trajectories approach the equilibrium as $t \to \infty$. 
+$$
+\boldsymbol{\xi}_0 \in W^s(x^*) \iff \lim_{t \to +\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to +\infty} \mathbf{x}(t) = \mathbf{x}^*(t)
+$$
+
+
+
+
+- **Unstable manifolds** $\left(W^u\right)$correspond to subspaces of a dynamical system departing from an equilibrium as $t \to \infty$.
+$$
+\boldsymbol{\xi}_0 \in W^u(x^*) \iff \lim_{t \to -\infty} \boldsymbol{\xi}(t) = 0. \quad i.e.,\quad \lim_{t \to -\infty} \mathbf{x}(t) = \mathbf{x}^*(t)
+$$
+
+Stable and unstable manifolds do not have to be one-dimensional. The dimensions of these manifolds are determined by the eigenvalues of $\mathbf{A} \in R^n$. 
+Thus, **the stable and unstable manifolds are subspaces in the linearized system** (or tangent spaces to be more precise) whose dimensions add up with any **center manifold** to the full dimension of the system.
+
+Let $n_s$ be the number of eigenvalues with negative real part, $n_u$ be the number of eigenvalues with positive real part,
+and $n_c$ be the number of eigenvalues with zero real part (center directions) that define the **center manifold** $\left(W^c\right)$.
+
+Then:
+
+$$
+\dim W^s(x^*) = n_s, \quad \dim W^u(x^*) = n_u, \quad \dim W^c(x^*) = n_c,
+$$
+
+with
+
+$$
+n_s + n_u + n_c = n,
+$$
+
+where $n$ is the dimension of the full system.
+Intuitively, the stable manifold spans the directions along which perturbations decay to $x^*$ over time, the unstable manifold spans the directions along which perturbations grow away from $x^*$, and the center manifold (if any) spans the directions along which dynamics are neither decaying nor growing exponentially.
+
+
+
+## Bifurcations
 <CalloutContainer slot="cards">
 <CalloutCard title="Heads up!">
-Studying equilibrium points provides deep insight into the qualitative behavior of a system. 
-They identify the location of steady states and reveal how small changes in parameters can lead to bifurcations or qualitative shifts in dynamics, 
-and guide the design of control strategies aimed at stabilizing desired states. 
-Moreover, equilibria often shape the global organization of trajectories in nonlinear systems, 
-with stable and unstable manifolds acting as pathways that govern the flow of the system.
+Bifurcation analysis is a central tool in understanding how seemingly innocuous parameters cause systems to transition between different behaviors, such as from steady states to oscillations which can be critical in the design of flight and control systems.
 </CalloutCard>
 </CalloutContainer>
+
+A far reaching result in dynamical systems theory is that the behavior of the entire system can also depend on **parameters**, for instance, additive or multiplicative constants. 
+A so-called **bifurcation** occurs when a small smooth change in a system parameter causes a qualitative change in the system's long-term behavior. 
+Bifurcations indicate where the number or stability of equilibrium points (or periodic orbits) changes, fundamentally altering the system's dynamics.
+
+Consider a dynamical system depending on a parameter $\mu$:
+
+$$
+\dot{x} = f(x, \mu),
+$$
+
+where $x$ is the state variable and $\mu$ is a system parameter. A **bifurcation point** $\mu = \mu^*$ occurs when the stability or number of equilibria changes.
+
+### One-Parameter Bifurcations
+
+Common examples of bifurcations in one-parameter systems include:
+
+- **Saddle-node bifurcations**: Two equilibria (one stable, one unstable) "collide and annihilate" each other as $\mu$ crosses a critical value. Take for example
+
+$$
+\dot{x} = \mu - x^2.
+$$
+
+For $\mu < 0$, there are no real equilibria, since $\dot{x}=0$ implies that $x^*=\pm i\sqrt{\mu}$. For $\mu = 0$, a single equilibrium exists at $x = 0$. 
+For $\mu > 0$, two equilibria appear at $x = \pm \sqrt{\mu}$, one stable and one unstable.
+
+- **Pitchfork bifurcations**: A symmetric equilibrium loses stability and two new equilibria emerge:
+
+$$
+\dot{x} = \mu x - x^3
+$$
+
+For $\mu < 0$, $x = 0$ is stable. For $\mu > 0$, $x = 0$ becomes unstable and two stable equilibria appear at $x = \pm \sqrt{\mu}$.
+
+- **Hopf bifurcations**: An equilibrium point loses stability and a small-amplitude limit cycle emerges.
+
+### Two-Parameter Bifurcations
+
+When a system depends on two parameters, $\mu$ and $\nu$, i.e.,
+
+$$
+\dot{x} = f(x, \mu, \nu),
+$$
+
+more complex bifurcation structures can occur. Curves in the $(\mu, \nu)$ parameter plane can separate regions with qualitatively different dynamics, and points where multiple bifurcation curves meet are called **codimension-2 bifurcations**. These can lead to richer phenomena such as **Bogdanov–Takens** or **cusp bifurcations**.
 
