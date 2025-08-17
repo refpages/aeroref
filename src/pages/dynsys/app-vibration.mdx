@@ -2,4 +2,290 @@
 layout: ../../layouts/MDXLayout.astro
 title: Vibration Theory
 ---
-# Under Construction
+# Vibration Theory
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Vibration theory plays a critical role in understanding the behavior of structures and materials subjected to dynamic forces. Aircraft, spacecraft, and aerospace components are constantly exposed to various vibrational loads due to aerodynamic forces, engine operations, and external disturbances. Understanding and controlling these vibrations is essential for ensuring structural integrity, improving performance, and enhancing safety.  
+</CalloutCard>
+</CalloutContainer>
+Vibration theory is concerned with the analysis of oscillatory systems, where objects experience periodic motion around an equilibrium point. This theory covers various types of vibrations, including free and forced vibrations, and encompasses different forms such as linear and nonlinear, damped and undamped, and single or multi-degree-of-freedom systems.  
+
+Vibration analysis is applied to:
+
+1. **Structural Dynamics**: Aircraft wings, fuselage, turbine blades, and landing gear are designed to withstand vibrational stresses.  
+2. **Aeroelasticity**: The interaction between aerodynamic forces and structural elasticity can lead to phenomena such as flutter, which must be analyzed and controlled.  
+3. **Vibration Isolation and Damping**: Ensuring passenger comfort and protecting sensitive avionics from harmful vibrational frequencies during flight or launch.  
+4. **Resonance Avoidance**: Avoiding resonance frequencies in aerospace structures is critical to prevent catastrophic failures.  
+
+This chapter will cover the fundamental concepts of vibrational systems, the governing equations of motion, and the analysis techniques required to model and solve vibration problems in aerospace structures.  
+
+---
+
+## The Harmonic Oscillator
+
+The Harmonic Oscillator constitutes one of the most fundamental models in vibration theory. Its equations of motion in one dimension are:
+<Result title="Equation of Motion for a Harmonic Oscillator">
+$$
+m \ddot{q} = -k q,
+$$
+</Result>
+where $q(t)$ is the displacement of mass $m$ from its orginal position, and $k$ is a constant.
+Initial conditions might look something like:
+$$
+q(t=0) = q_0, \quad \dot{q}(t=0) = p_0/m = v_0.
+$$
+
+The above equation of motion represents a spring-mass system, i.e., a mass connected to a wall via a spring. 
+The restoring force produced by the spring grows proportionally to $k$ and to the displacement of the mass from its origin. Unless $k=0$, the mass will "vibrate", i.e. change its position relative to its equilibrium position $q_0$ in a periodic manner. 
+
+The equations of motion can be solved either using sines and cosines or a complex exponential Ansatz which we will discuss later. 
+Using trigonometric functions for our proposed solution we have
+$$
+q(t) = a \cos(\omega t) + b \sin(\omega t)
+$$
+
+$$
+\dot{q}(t) = - a \,\omega \sin(\omega t) + b \,\omega \cos(\omega t)
+$$
+
+At $t=0$ we assume initial conditions $q(0) = q_0 = a$ and $\dot{q}(0) = b \omega$,
+which means $b = \frac{v_0}{\omega}$. With that the final solution becomes:
+$$
+q(t) = q_0 \cos(\omega t) + \frac{v_0}{\omega} \sin(\omega t)
+$$
+which shows that the mass moves periodically about the center.
+
+### Eigenfrequencies
+
+A 1D Harmonic Oscillator such as we discussed above has precisely one period of oscillation, and, thus, one eigenfrequency $\omega$.
+This frequency shows up in the $\sin$ and $\cos$ terms of our soltuion. Can we connect this frequency to physical parameters in our equation of motion?
+
+If we differentiate our solution $q(t) = q_0 \cos(\omega t) + \frac{v_0}{\omega} \sin(\omega t)$ twice with respect to time we find
+$$
+\ddot{q}(t) = -\omega^2 q(t)
+$$
+On the other hand, from our equation of motion we know that
+$$
+\ddot{q}(t) = -\frac{k}{m} q(t)
+$$
+Comparing coefficients of $q(t)$ on the right hand side of both equations gives:
+<Result title="Eigenfrequency of a 1D Harmonic Oscillator">
+$$
+\omega^2 = \frac{k}{m} \quad \Rightarrow \quad \omega = \sqrt{\frac{k}{m}}.
+$$
+</Result>
+---
+
+## Dampened Harmonic Oscillator
+
+We can use [Newtonian Mechanics](https://aero.refpages.org/dynsys/newton/) to study the impact of adding a damping force to a harmonic oscillator: 
+$$
+m \ddot{q} = F_{res} + F_{dmp}.
+$$
+For linear restitution and damping proportional to velocity our equation of motion (EoM) reads
+<Result title='Equation of Motion for the 1D dampened Harmonic Oscillator'>
+$$
+m \ddot{q} + c \dot{q} + k q = 0.
+$$
+</Result>
+Using a complex exponential Ansatz, i.e., $q(t) = C e^{i \omega t}, \quad C \in \mathbb{C}$ and inserting this into the EoM we find
+$$
+-m \omega^2 + i c \omega + k = 0,
+$$
+which lets us calculate the eigenfrequencies
+$$
+\omega_{1,2} = \frac{i c \pm \sqrt{4 k m - c^2}}{2 m}
+$$
+Inserting this again into our Ansatz we find the general solution
+$$
+q(t) = C e^{-\frac{c t}{2 m}} \left( e^{\frac{i t \sqrt{4 k m - c^2}}{2 m}} + e^{-\frac{i t \sqrt{4 k m - c^2}}{2 m}} \right).
+$$
+Looking at the terms in the exponents we can define a damping timescale:
+$$
+\gamma = \frac{c}{2 m},
+$$
+and rewrite the solution $q(t)$ as:
+<Result title="Solution for the 1D Dampened Harmonic Oscillator" >
+$$
+q(t) = C e^{-\gamma t} \left( e^{i t \sqrt{k/m - \gamma^2}} + e^{-i t \sqrt{k/m - \gamma^2}} \right)
+$$
+</Result>
+Depending on the system this solution permits three kinds of behavior
+- Underdamped (oscillatory): $\quad \quad \quad \, \,  \frac{k}{m} - \gamma^2 > 0$  
+- Critically damped (fastest damping): $\frac{k}{m} - \gamma^2 = 0$  
+- Overdamped (slow damping): $\quad \quad \, \,\,  \frac{k}{m} - \gamma^2 < 0$  
+
+In order to convince ourselves that there is still some oscillatory behavior we can define $\omega_0^2 = \frac{k}{m} - \gamma^2$ and 
+rewrite the above solution in trigonometric form:
+$$
+q(t) = A e^{-\gamma t} \cos(\omega_0 t + \phi).
+$$
+
+---
+
+## Dampened Driven Harmonic Oscillator
+
+Even more interesting behavior can arise when a harmonic oscillator is driven through an external, periodic force
+
+$$
+m \ddot{q} = F_{res} + F_{dmp} + F_{drv}.
+$$
+
+Assume
+
+$$
+F_{drv} = d \cos(\omega_f t + \phi_f).
+$$
+
+Then the equation of motion reads
+
+$$
+m \ddot{q} = -k q - c \dot{q} + d \cos(\omega_f t + \phi_f).
+$$
+
+This is an inhomogeneous differential equation of second order. The solution has to be found through superposition of the homogeneous and a particular solution:
+
+$$
+q(t) = q_h(t) + q_p(t)
+$$
+
+It is useful to rewrite the forcing term as a complex exponential:
+
+$$
+m \ddot{q} + c \dot{q} + k q = d \, e^{i(\omega_f t + \phi_f)}
+$$
+
+We are allowed to do this because
+
+$$
+e^{i (\omega_f t + \phi_f)} = \cos(\omega_f t + \phi_f) + i \sin(\omega_f t + \phi_f)
+$$
+
+and, thus,
+
+$$
+\text{Re}(d \, e^{i(\omega_f t + \phi_f)}) = d \cos(\omega_f t + \phi_f)
+$$
+
+It is again convenient to choose a complex Ansatz since we already know this works for the homogeneous case:
+
+$$
+q_h(t) = A e^{i(\omega t + \phi)}.
+$$
+
+We will furthermore assume that the particular solution can also be expressed in the form:
+
+$$
+q_p(t) = C e^{i(\omega_f t + \phi_f)}.
+$$
+
+Plugging the particular solution into the equation of motion results in
+
+$$
+- m \omega_f^2 C e^{i(\omega_f t + \phi_f)} + i c \omega_f C e^{i(\omega_f t + \phi_f)} + k C e^{i(\omega_f t + \phi_f)} = d \, e^{i(\omega_f t + \phi_f)}
+$$
+
+so that
+
+$$
+(- m \omega_f^2 + i c \omega_f + k) C e^{i(\omega_f t + \phi_f)} = d e^{i(\omega_f t + \phi_f)}.
+$$
+
+Calculating the complex amplitude $C$ for the particular solution yields
+
+$$
+C = \frac{d}{- m \omega_f^2 + i c \omega_f + k}.
+$$
+
+The particular solution, thus, reads
+
+$$
+q_p(t) = \frac{d}{- m \omega_f^2 + i c \omega_f + k} e^{i(\omega_f t + \phi_f)}.
+$$
+
+The total solution then reads
+
+$$
+q(t) = q_h + q_p = A e^{i(\omega t + \phi)} + \frac{d}{- m \omega_f^2 + i c \omega_f + k} e^{i(\omega_f t + \phi_f)}.
+$$
+
+If we assume without loss of generality that $q(0) = 0$ we arrive at
+
+$$
+- A e^{i \phi} = \frac{d}{- m \omega_f^2 + i c \omega_f + k} e^{i \phi_f}.
+$$
+
+$$
+(- m \omega_f^2 + i c \omega_f + k) = -\frac{d}{A} e^{i(\phi_f - \phi)}
+$$
+
+$$
+(- m \omega_f^2 + i c \omega_f + k) = -\frac{d}{A} e^{-i(\omega_f - \omega_f) t} e^{-i (\phi - \phi_f)}
+$$
+
+$$
+a (- m \omega_f^2 + i c \omega_f + k) = e^{-i \theta}
+$$
+
+$$
+a (k - m \omega_f^2 + i c \omega_f) = \cos(\theta) - i \sin(\theta)
+$$
+
+$$
+- \frac{A}{d} = a, \quad \phi - \phi_f = \theta
+$$
+
+Equating real and imaginary parts separately we find
+
+$$
+a (k - m \omega_f^2) = \cos(\theta)
+$$
+
+$$
+a c \, \omega_f = - \sin(\theta)
+$$
+
+Squaring both equations
+
+$$
+a^2 (k - m \omega_f^2)^2 = \cos^2(\theta)
+$$
+
+$$
+a^2 c^2 \, \omega_f^2 = \sin^2(\theta)
+$$
+
+and adding them again gives the magnitude:
+
+$$
+a^2 \left[(k - m \omega_f^2)^2 + c^2 \omega_f^2 \right] = 1.
+$$
+
+Expressing $a$ from the previous equation gives
+
+$$
+a(c, m, \omega_f) = \frac{1}{\sqrt{(k - m \omega_f^2)^2 + c^2 \omega_f^2}} \cdot \text{sgn} \left(\frac{-\sin(\theta)}{c \, \omega_f}\right)
+$$
+
+Rewriting the previous equation for the scaled amplitude $a$ in a slightly different form yields
+$$
+|a| = \frac{1}{\sqrt{m^2 (k/m - \omega_f^2)^2 + c^2 \omega_f^2}}
+$$
+and with
+$$
+\omega_0 = \sqrt{\frac{k}{m}}, \quad \zeta = \frac{c}{2 \sqrt{m k}}, \quad c = 2 \zeta \omega_0
+$$
+where $\zeta$ is the so-called "damping ratio", we can find the amplitude $A$ in terms of damping ratio:
+
+<Result title='Amplitude of Dampened Driven Harmonic Oscillator'>
+$$
+|A| = \frac{d}{m} \frac{1}{\sqrt{(\omega_0^2 - \omega_f^2)^2 + (2 \zeta \omega_0 \omega_f)^2}}.
+$$
+</Result>
+Finally, the phase difference between forcing and the response of the harmonic oscillator reads
+$$
+\theta = \arctan \left( \frac{2 \zeta \omega_f \omega_0}{\omega_f^2 - \omega_0^2} \right),
+$$
+
+These equations contain a well-known condition for [resonance](https://en.wikipedia.org/wiki/Resonance). If the driving frequency and the natural frequency coincide and damping is insufficient, the amplitude of the driven oscillator increases dramatically.
+

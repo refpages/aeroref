@@ -107,19 +107,19 @@ $$
 $$
 In this context, $W^s(x^*)=c_1 (-1,1)^T \,e^{3t/2}$ would correspond to the local representation of the **unstable** manifold and $W^u(x^*) = c_2 (1,1)^T \,e^{-t/2}$ to the **stable manifold** of a hyperbolic equilibrium point.
 
-Formally, if $\mathbf{x}(t)$ is a solution to the dynamical system with initial condition $\mathbf{x}_0$:
+Formally, if $\mathbf{x}(t)$ is a solution to the dynamical system with initial condition $\mathbf{x}_0$ we can define a
 
-- **Stable manifolds** $\left(W^s\right)$ correspond to subspaces of a dynamical system where trajectories approach the equilibrium as $t \to \infty$. 
+- **Stable manifold** $\left(W^s\right)$ which corresponds to a subspace of a dynamical system where trajectories approach the equilibrium as $t \to \infty$. 
 $$
-\boldsymbol{\xi}_0 \in W^s(x^*) \iff \lim_{t \to +\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to +\infty} \mathbf{x}(t) = \mathbf{x}^*(t)
+\boldsymbol{\xi}_0 \in W^s(x^*) \iff \lim_{t \to +\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to +\infty} \mathbf{x}(t) = \mathbf{x}^*(t).
 $$
 
 
 
 
-- **Unstable manifolds** $\left(W^u\right)$correspond to subspaces of a dynamical system departing from an equilibrium as $t \to \infty$.
+- **Unstable manifold** $\left(W^u\right)$ which corresponds to a subspace of a dynamical system departing from an equilibrium as $t \to \infty$.
 $$
-\boldsymbol{\xi}_0 \in W^u(x^*) \iff \lim_{t \to -\infty} \boldsymbol{\xi}(t) = 0. \quad i.e.,\quad \lim_{t \to -\infty} \mathbf{x}(t) = \mathbf{x}^*(t)
+\boldsymbol{\xi}_0 \in W^u(x^*) \iff \lim_{t \to -\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to -\infty} \mathbf{x}(t) = \mathbf{x}^*(t).
 $$
 
 Stable and unstable manifolds do not have to be one-dimensional. The dimensions of these manifolds are determined by the eigenvalues of $\mathbf{A} \in R^n$. 
@@ -134,13 +134,8 @@ $$
 \dim W^s(x^*) = n_s, \quad \dim W^u(x^*) = n_u, \quad \dim W^c(x^*) = n_c,
 $$
 
-with
+with $n_s + n_u + n_c = n$, where $n$ is the dimension of the full system.
 
-$$
-n_s + n_u + n_c = n,
-$$
-
-where $n$ is the dimension of the full system.
 Intuitively, the stable manifold spans the directions along which perturbations decay to $x^*$ over time, the unstable manifold spans the directions along which perturbations grow away from $x^*$, and the center manifold (if any) spans the directions along which dynamics are neither decaying nor growing exponentially.
 
 
@@ -152,7 +147,7 @@ Bifurcation analysis is a central tool in understanding how seemingly innocuous 
 </CalloutCard>
 </CalloutContainer>
 
-A far reaching result in dynamical systems theory is that the behavior of the entire system can also depend on **parameters**, for instance, additive or multiplicative constants. 
+A far reaching result in dynamical systems theory is that the behavior of the system can also depend on **parameters**, for instance, additive or multiplicative constants. 
 A so-called **bifurcation** occurs when a small smooth change in a system parameter causes a qualitative change in the system's long-term behavior. 
 Bifurcations indicate where the number or stability of equilibrium points (or periodic orbits) changes, fundamentally altering the system's dynamics.
 
