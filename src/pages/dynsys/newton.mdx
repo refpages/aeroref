@@ -52,15 +52,15 @@ Here, $\mathbf{p}$ is the momentum of the object under investigation, and $\math
 </Result>
 
 ## Example: 3D Harmonic Oscillator
-Assuming $\dot{m}=0$, and $\mathbf{F} = -m \,k^2 \,\mathbf{r}$, where $m$ is the mass of the oscillator, $k$ is a constant and $\mathbf{r}$ the displacement with respect to the equilibrium position, the equations of motion can be derived via
+Assuming $\dot{m}=0$, and $\mathbf{F} = -k \,\mathbf{r}$, where $m$ is the mass of the oscillator, $k$ is a constant and $\mathbf{r}$ the displacement with respect to the equilibrium position, the equations of motion can be derived via
 $$
- \frac{d\mathbf{p}}{dt} = -m\, k^2 \,\mathbf{r}
+ \frac{d\mathbf{p}}{dt} = -k \,\mathbf{r}
 $$
 which results in 
 $$
-\ddot{\mathbf{r}} = -k^2 \mathbf{r}.
+\ddot{\mathbf{r}} = -\frac{k}{m} \mathbf{r}.
 $$
-The above equation corresponds to three sets of second order ordinary differential equations, that even permit an analytic solution of the form $\mathbf{r}(t) = \mathbf{c}_1 \cos(k t) + \mathbf{c}_2 \sin(k t)$, with $\mathbf{c}_{1,2}$ being constants of integration.
+The above equation corresponds to three sets of second order ordinary differential equations, that even permit an analytic solution of the form $\mathbf{r}(t) = \mathbf{c}_1 \cos(\omega t) + \mathbf{c}_2 \sin(\omega t)$, with $\mathbf{c}_{1,2}$ being constants of integration and $\omega = \sqrt{k/m}$.
 
 ## Integrals of Motion in Newtonian Dynamics
 
@@ -70,7 +70,7 @@ The term "ten integrals of motion" typically refers to the ten independent conse
 
 - **Linear Motion (Translational Symmetries)**: Six integrals describe the conservation of linear and angular momentum for the entire system.  
 - **Angular Motion (Rotational Symmetries)**: Three integrals describe the orientation or rotational motion of the system, in particular the length and orientation of the system's angular momentum.  
-- **Mechanical Energy**: The conservation of mechanical energy is linked to the time-reversibility of a system. Friction is a counterexample, because the arrow of time determines whether mechanical energy is converted into heat (internal energy) or vice versa.
+- **Mechanical Energy**: The conservation of mechanical energy is linked to the time-reversibility of a system. Friction is a counter-example, because the arrow of time determines whether mechanical energy is converted into heat (internal energy) or vice versa.
 
 Each integral of motion corresponds to a physical law or symmetry in the system. These conserved quantities allow engineers and physicists to simplify the analysis of complex dynamical systems, such as the flight trajectory of an aircraft or the orbit of a satellite. Understanding these integrals is particularly important in systems with minimal external forces, where such quantities remain conserved over time.
 
@@ -111,7 +111,7 @@ Energy conservation corresponds to the time-invariance of the system—if the sy
 The motion of the center of mass of a system of particles follows the same laws of motion as a single particle. The position of the center of mass in the $x$-, $y$-, and $z$-directions can be described by three integrals of motion. For a system of particles with masses $m_i$ and positions $r_i$, the center of mass is given by:
 
 $$
-R_{\text{cm}} = \frac{1}{M} \sum m_i r_i
+\mathbf{R}_{\text{cm}} = \frac{1}{M} \sum m_i \mathbf{r}_i
 $$
 
 where $M$ is the total mass of the system.
