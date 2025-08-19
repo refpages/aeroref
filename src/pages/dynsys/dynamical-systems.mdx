@@ -105,28 +105,27 @@ In that case, the solutions are a composit of subspaces, for example
 $$
 \boldsymbol{\xi}(t) =  c_1 \begin{pmatrix}-1 \\ 1 \end{pmatrix} \,e^{\frac{3}{2} t} +  c_2 \begin{pmatrix}1 \\ 1 \end{pmatrix} \,e^{-\frac{1}{2} t}
 $$
-In this context, $W^s(x^*)=c_1 (-1,1)^T \,e^{3t/2}$ would correspond to the local representation of the **unstable** manifold and $W^u(x^*) = c_2 (1,1)^T \,e^{-t/2}$ to the **stable manifold** of a hyperbolic equilibrium point.
+In this context, $W^s(x^*)=c_1 (-1,1)^T \,e^{3t/2}$ would correspond to the local representation of the **unstable manifold** and $W^u(x^*) = c_2 (1,1)^T \,e^{-t/2}$ to the **stable manifold** of a hyperbolic equilibrium point.
 
 Formally, if $\mathbf{x}(t)$ is a solution to the dynamical system with initial condition $\mathbf{x}_0$ we can define a
 
-- **Stable manifold** $\left(W^s\right)$ which corresponds to a subspace of a dynamical system where trajectories approach the equilibrium as $t \to \infty$. 
+- **Stable manifold** $\left(W^s\right)$ as (tangent to) a subspace of a dynamical system where trajectories approach the equilibrium as $t \to \infty$. 
 $$
-\boldsymbol{\xi}_0 \in W^s(x^*) \iff \lim_{t \to +\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to +\infty} \mathbf{x}(t) = \mathbf{x}^*(t).
-$$
-
-
-
-
-- **Unstable manifold** $\left(W^u\right)$ which corresponds to a subspace of a dynamical system departing from an equilibrium as $t \to \infty$.
-$$
-\boldsymbol{\xi}_0 \in W^u(x^*) \iff \lim_{t \to -\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to -\infty} \mathbf{x}(t) = \mathbf{x}^*(t).
+\boldsymbol{\xi} \in W^s(x^*) \iff \lim_{t \to +\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to +\infty} \mathbf{x}(t) = \mathbf{x}^*(t).
 $$
 
-Stable and unstable manifolds do not have to be one-dimensional. The dimensions of these manifolds are determined by the eigenvalues of $\mathbf{A} \in R^n$. 
-Thus, **the stable and unstable manifolds are subspaces in the linearized system** (or tangent spaces to be more precise) whose dimensions add up with any **center manifold** to the full dimension of the system.
+- **Unstable manifold** $\left(W^u\right)$ as (tangent to) a subspace of a dynamical system departing from an equilibrium as $t \to \infty$.
+$$
+\boldsymbol{\xi} \in W^u(x^*) \iff \lim_{t \to -\infty} \boldsymbol{\xi}(t) = 0, \quad i.e.,\quad \lim_{t \to -\infty} \mathbf{x}(t) = \mathbf{x}^*(t).
+$$
+
+- **Center manifold** $\left(W^c\right)$ as (tangent to) a (possibly non-unique) subspace of a dynamical system that is spanned by Eigenvalues with zero real part, i.e., $Re(\lambda_i)=0$ .
+
+Stable and unstable manifolds do not have to be one-dimensional. The dimensions of the linear subspaces, and, thus, the manifolds themselves are determined by the eigenvalues of $\mathbf{A} \in R^n$. 
+The dimensions of the stable and unstable manifolds add up with any center manifold to the full dimension of the system.
 
 Let $n_s$ be the number of eigenvalues with negative real part, $n_u$ be the number of eigenvalues with positive real part,
-and $n_c$ be the number of eigenvalues with zero real part (center directions) that define the **center manifold** $\left(W^c\right)$.
+and $n_c$ be the number of eigenvalues with zero real part (center directions) that define the center manifold.
 
 Then:
 
@@ -136,7 +135,8 @@ $$
 
 with $n_s + n_u + n_c = n$, where $n$ is the dimension of the full system.
 
-Intuitively, the stable manifold spans the directions along which perturbations decay to $x^*$ over time, the unstable manifold spans the directions along which perturbations grow away from $x^*$, and the center manifold (if any) spans the directions along which dynamics are neither decaying nor growing exponentially.
+Intuitively, the **stable manifold** spans the directions along which perturbations decay to $x^*$ over time, the **unstable manifold** spans the directions along which perturbations grow away from $x^*$, 
+and the **center manifold** (if any) spans the directions along which dynamics are neither decaying nor growing exponentially.
 
 
 
