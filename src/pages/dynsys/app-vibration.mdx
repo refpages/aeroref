@@ -88,7 +88,7 @@ $$
 m \ddot{q} + c \dot{q} + k q = 0.
 $$
 </Result>
-Using a complex exponential Ansatz, i.e., $q(t) = C e^{i \omega t}, \quad C \in \mathbb{C}$ and inserting this into the EoM we find
+Using a complex exponential Ansatz, i.e., $q(t) = C e^{i \omega t}, \, C \in \mathbb{C}$ and $i^2=-1$. Inserting this $q(t)$ into the EoM we find
 $$
 -m \omega^2 + i c \omega + k = 0,
 $$
@@ -209,42 +209,32 @@ $$
 q(t) = q_h + q_p = A e^{i(\omega t + \phi)} + \frac{d}{- m \omega_f^2 + i c \omega_f + k} e^{i(\omega_f t + \phi_f)}.
 $$
 
-If we assume without loss of generality that $q(0) = 0$ we arrive at
+## Resonance 
+Let us investigate the above soltion in more detail. Assuming $q(0) = 0$, we can rewrite the solution $q(t)$ as
 
 $$
 - A e^{i \phi} = \frac{d}{- m \omega_f^2 + i c \omega_f + k} e^{i \phi_f}.
 $$
-
+Rewriting the above equation yields
 $$
-(- m \omega_f^2 + i c \omega_f + k) = -\frac{d}{A} e^{i(\phi_f - \phi)}
+\begin{align*}
+(- m \omega_f^2 + i c \omega_f + k) &= -\frac{d}{A} e^{i(\phi_f - \phi)},\\
+(- m \omega_f^2 + i c \omega_f + k) &= -\frac{d}{A} e^{-i(\omega_f - \omega_f) t} e^{-i (\phi - \phi_f)},\\
+a (- m \omega_f^2 + i c \omega_f + k) &= e^{-i \theta},\\
+a (k - m \omega_f^2 + i c \omega_f) &= \cos(\theta) - i \sin(\theta).
+\end{align*}
 $$
-
+Defining the scaled amplitude $a$ and phase difference $\theta$
 $$
-(- m \omega_f^2 + i c \omega_f + k) = -\frac{d}{A} e^{-i(\omega_f - \omega_f) t} e^{-i (\phi - \phi_f)}
+- \frac{A}{d} = a, \quad \phi - \phi_f = \theta, 
 $$
-
+and we can equate real and imaginary parts separately, i.e.,  
 $$
-a (- m \omega_f^2 + i c \omega_f + k) = e^{-i \theta}
+\begin{align*}
+a (k - m \omega_f^2) &= \cos(\theta), \\
+a c \, \omega_f &= - \sin(\theta)
+\end{align*}
 $$
-
-$$
-a (k - m \omega_f^2 + i c \omega_f) = \cos(\theta) - i \sin(\theta)
-$$
-
-$$
-- \frac{A}{d} = a, \quad \phi - \phi_f = \theta
-$$
-
-Equating real and imaginary parts separately we find
-
-$$
-a (k - m \omega_f^2) = \cos(\theta)
-$$
-
-$$
-a c \, \omega_f = - \sin(\theta)
-$$
-
 Squaring both equations
 
 $$
@@ -288,4 +278,272 @@ $$
 $$
 
 These equations contain a well-known condition for [resonance](https://en.wikipedia.org/wiki/Resonance). If the driving frequency and the natural frequency coincide and damping is insufficient, the amplitude of the driven oscillator increases dramatically.
+
+---
+## Coupled Harmonic Oscillators
+
+Coupled harmonic oscillators are used as a model in several different fields to better understand energy exchange between vibrating modes in systems such as airfoils, 
+or buildings subject to external forcing. Taking the example from the lecture, we have two spring mass systems, 
+each coupled to its nearest wall with a spring with a coefficient $k_1=k_2=k$. The displacement of said masses from their origins is given by $x_1(t)$ and $x_2(t)$, respectively. Both masses are also coupled with a center spring with a potentially different coefficient $\kappa$. 
+
+![Coupled Harmonic Oscillators](images/two_m_springs.png)
+
+
+The corresponding equations of motion read
+
+$$
+\begin{align*}
+m\,\ddot{x}_1 &= -(k+\kappa)\, x_1 + \kappa\, x_2, \\
+m\,\ddot{x}_2 &= -(k+\kappa)\, x_2 + \kappa\, x_1.
+\end{align*}
+$$
+
+Since the coupling is linear in the states, we can rewrite that system in matrix form
+
+$$
+\ddot{\mathbf{x}} = M \mathbf{x},
+$$
+
+where
+
+$$
+\mathbf{x} = 
+\begin{pmatrix}
+x_1 \\ x_2
+\end{pmatrix}
+$$
+
+and
+
+$$
+M = \frac{1}{m} 
+\begin{pmatrix}
+-(k+\kappa) & \kappa \\
+\kappa & -(k+\kappa)
+\end{pmatrix}.
+$$
+
+This step will enable us to elegantly decouple the system by transforming into the Eigensystem of the differential equations via the (mass weighted) coupling matrix $M$. 
+The aim is to transform the system into the following form
+$$
+\ddot{\mathbf{q}} = N \mathbf{q},
+$$
+where each component is decoupled from each other, so that $N$ becomes diagonal. To this end we determine the Eigenvalues ($\lambda$) and Eigenvectors ($\mathbf{v}$) of $M$
+$$
+\lambda_1 = -k, \quad \lambda_2 = -k - 2\kappa,
+$$
+and
+$$
+\mathbf{v}_1 = \frac{1}{\sqrt{2}}
+\begin{pmatrix}1 \\ 1\end{pmatrix}, \quad
+\mathbf{v}_2 = \frac{1}{\sqrt{2}}
+\begin{pmatrix}1 \\ -1\end{pmatrix}.
+$$
+Using the Eigenvectors we can define a basis change matrix $S$ that will allow us to find the new $\mathbf{q}$ from $\mathbf{x}$. This can be achieved by ensuring that 
+$S$ has the Eigenvectors of $M$ as columns:
+$$
+S = \frac{1}{\sqrt{2}}
+\begin{pmatrix}1 & 1 \\ 1 & -1\end{pmatrix}.
+$$
+Then
+$$
+\mathbf{q} = S \mathbf{x}
+$$
+and
+$$
+q_1 = x_1 + x_2, \quad q_2 = x_1 - x_2.
+$$
+Similarly, we can find $N$ as
+$$
+N = S^{-1} M S,
+$$
+which eventually reads
+$$
+N = \frac{1}{m} 
+\begin{pmatrix}-k & 0 \\ 0 & -k-2\kappa\end{pmatrix}.
+$$
+The new, **decoupled Eigensystem of harmonic oscillators** has the following equations of motion
+$$
+\ddot{\mathbf{q}} = N \mathbf{q}
+$$
+Those can now be solved conveniently via our standard Ansatz
+$$
+q_1(t) = e^{i \omega_1 t}, \quad q_2(t) = e^{i \omega_2 t}.
+$$
+
+Inserting the above into the differential equations yields
+
+$$
+\begin{align*}
+-m \omega_1^2 e^{i \omega_1 t} &= -k e^{i \omega_1 t},\\
+-m \omega_2^2 e^{i \omega_2 t} &= -(k + 2\kappa) e^{i \omega_2 t}.
+\end{align*}
+$$
+
+With corresponding normal/Eigenfrequencies
+$$
+\omega_1 = \omega_f = \sqrt{\frac{k}{m}}, \quad \omega_2 = \omega_s = \sqrt{\frac{k + 2\kappa}{m}}.
+$$
+
+The Eigenmode solutions then read
+
+$$
+q_1(t) = A_1 e^{i \left(\sqrt{\frac{k}{m}} t + \phi_1\right)}, \quad q_2(t) = A_2 e^{i \left(\sqrt{\frac{k + 2\kappa}{m}} t + \phi_2\right)}.
+$$
+
+In order to translate the Eigenmode solutions into our original coordinates, we need the inverse of our basis transformation matrix $S$:
+
+$$
+S^{-1} = \frac{1}{\sqrt{2}}
+\begin{pmatrix}1 & 1 \\ 1 & -1\end{pmatrix}, \quad \mathbf{x} = S^{-1} \mathbf{q}\, \Rightarrow\, \mathbf{x} = 
+\begin{pmatrix} q_1 + q_2 \\ q_1 - q_2 \end{pmatrix}.
+$$
+### Example:
+Let us assume the two coupled harmonic oscillators are subject to the following initial conditions
+
+$$
+\phi_1 = \phi_2 = 0, \quad x_1(0) = 1, \quad x_2(0) = 0, \quad m = 1, \quad k = 4, \quad \kappa = 2.
+$$
+
+Since we already did all the work by transforming the equations of motion in $\mathbf{x}$ to the decoupled system $q$ and solving the latter, we know solutions for $\mathbf{x}$ explicitly:
+
+$$
+\begin{align*}
+x_1 &= q_1 + q_2 &= A_1 e^{i \left(\sqrt{\frac{k}{m}} t + \phi_1\right)} + A_2 e^{i \left(\sqrt{\frac{k + 2\kappa}{m}} t + \phi_2\right)},\\
+x_2 &= q_1 - q_2 &= A_1 e^{i \left(\sqrt{\frac{k}{m}} t + \phi_1\right)} - A_2 e^{i \left(\sqrt{\frac{k + 2\kappa}{m}} t + \phi_2\right)}.
+\end{align*}
+$$
+Inserting the initial conditions we find
+$$
+\begin{align*}
+x_1 = A_1 + A_2 = 1, \\
+x_2 = A_1 - A_2 = 0.
+\end{align*}
+$$
+
+This is a system of two equations with two unknown amplitudes $A_1$ and $A_2$. The solution for the amplitudes is $A_1 = A_2 = 0.5$, which, together with the other initial conditions, gives
+
+$$
+\mathbf{x}(t) = 
+\begin{pmatrix} x_1(t) \\ x_2(t) \end{pmatrix} = \frac{1}{2} 
+\begin{pmatrix} e^{2 i t} + e^{\sqrt{8} i t} \\ e^{2 i t} - e^{\sqrt{8} i t} \end{pmatrix}.
+$$
+
+--- 
+
+## Tuned Mass Dampers
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+Tuned Mass Dampers (TMDs) are passive control systems designed to absorb and reduce the amplitude of mechanical vibrations. 
+TMDs are particularly beneficial in scenarios where resonant frequencies of structures, such as aircraft wings or spacecraft components, can lead to undesirable dynamic responses.
+In aerospace structures, TMDs are strategically placed to address critical modes of vibration, thereby improving performance, safety, and longevity of the structure. 
+</CalloutCard>
+</CalloutContainer>
+
+A **tuned mass damper** (TMD) is a device used to reduce the amplitude of mechanical vibrations. 
+It consists of a mass, a damper, and a spring, which is tuned to a specific frequency to counteract resonant vibrations. 
+By adding an auxiliary mass to the structure, which is tuned to a specific frequency, and connected to the main structure through a spring and a damper, 
+the system transfers energy from the vibrating structure to the damper, reducing resonance amplitudes. Tuned mass dampers are widely used in aerospace applications to mitigate unwanted vibrations in structural systems. 
+
+Consider a single-degree-of-freedom system with mass $m_1$, damping $c_1$, and stiffness $k_1$. The equation of motion for this system under a harmonic force, for instance, $F(t) = F_0 \cos(\omega t)$ is:
+
+$$
+m_1 \ddot{x}_1(t) + c_1 \dot{x}_1(t) + k_1 x_1(t) = F(t)
+$$
+
+Now, we add a tuned mass damper with mass $m_2$, damping $c_2$, and stiffness $k_2$. 
+The TMD is attached to the primary mass and introduces an additional degree of freedom. 
+
+Let $x_t(t)$ be the displacement of the TMD mass. Then, the coupled equations of motion for the combined system are:
+
+$$
+\begin{align*}
+&m_1 \ddot{x}_1 + c_1 \dot{x}_1 + k_1 x_1 + c_2 (\dot{x}_1 - \dot{x}_2) + k_2 (x_1 - x_2) = F(t),\\
+&m_2 \ddot{x}_2 + c_2 (\dot{x}_2 - \dot{x}_1) + k_2 (x_2 - x_1) = 0.
+\end{align*}
+$$
+
+The damping force provided by the TMD is proportional to the relative velocity between the two masses, given by:
+
+$$
+F_{\text{damping}} = c_2 (\dot{x}_1 - \dot{x}_2)
+$$
+
+## Tuning the TMD
+The goal of tuning is to select the TMD parameters $m_2$, $c_2$, and $k_2$ to minimize the vibration amplitude at the resonance frequency of the primary system, $\omega_1$, which occurs at:
+
+$$
+\omega_1 = \sqrt{\frac{k_1}{m_1}}
+$$
+
+To tune the TMD we want the natural frequency of the TMD should match the resonance frequency of the primary system:
+$$
+\omega_2 = \sqrt{\frac{k_2}{m_2}} = \omega_1
+$$
+This ensures that the TMD is tuned to the frequency where the primary system has its largest response.
+The damping ratio of the TMD, $\zeta_2 = \frac{c_2}{2 \sqrt{k_2 m_2}}$, is chosen to provide optimal damping. 
+A typical choice for optimal damping is $\zeta_t \approx 0.1$ to $0.2$.
+
+### Example
+Consider a system where the primary mass is $m_1 = 1000 \, \text{kg}$, stiffness $k_1 = 1 \times 10^6 \, \text{N/m}$, and damping $c_1 = 200 \, \text{Ns/m}$. 
+The target resonance frequency is:
+
+$$
+\omega_1 = \sqrt{\frac{k_1}{m_1}} = 31.62 \, \text{rad/s}
+$$
+
+For the TMD, we select $m_2 = 100 \, \text{kg}$. To tune the natural frequency of the TMD to $\omega_1$, we choose the stiffness of the TMD as:
+
+$$
+k_2 = m_2 \omega_2^2 = m_2 \omega_1^2 = 100 \times 1000 = 1 \times 10^5 \, \text{N/m}
+$$
+
+Now, select the damping ratio $\zeta_2 = 0.1$ to find the damping coefficient of the TMD:
+
+$$
+c_2 = 2 \zeta_2 \sqrt{k_2 m_2} =  2 \times 0.1 \times \sqrt{10^5 100} = 632.46 \, \text{Ns/m}.
+$$
+
+
+## Bode Plots
+
+The TMD is tuned to match the resonant frequency of the primary system. Bode diagrams can be used to visually confirm the reduction in the resonant peak. The figure below 
+shows the tuned parameter configuration from the example below. The blue curve is the frequency response without TMD, the orange one with TMD. 
+
+![Bode plot for the tuned mass damper example.](images/bode_plot.png)
+
+The figure shows that 
+even TMDs that only weigh a fraction of the driving mass can reduce the peak amplitude by a factor of 100 (roughly -20dB power) in the vicinity of the resonance frequency!
+
+## Transfer Functions
+Using the Transfer Function of a system featuring tuned mass damper is another possible way to tune TMDs.
+Consider again the single-degree-of-freedom system with mass $m_1$, damping $c_1$, and stiffness $k_1$. The equation of motion is
+$$
+m_1 \ddot{x}_1(t) + c_1 \dot{x}_1(t) + k_1 x_1(t) = F(t)
+$$
+Taking the Laplace transform yields
+$$
+m_1 s^2 X(s) + c_1 s X(s) + k_1 X(s) = F(s),
+$$
+The transfer function $H(s)$ of this undamped system is then defined as the function relating the displacement $X(s)$ to the input force $F(s)$
+$$
+H(s) = \frac{X(s)}{F(s)} = \frac{1}{m_1 s^2 + c_1 s + k_1},
+$$
+where $s = i \omega$. Now, we add a tuned mass damper with mass $m_2$, damping $c_2$, and stiffness $k_2$. The combined system reads
+$$
+\begin{align*}
+&m_1 \ddot{x}_1 + c_1 \dot{x}_1 + k_1 x_1 + c_2 (\dot{x}_1 - \dot{x}_2) + k_2 (x_1 - x_2) = F(t),\\
+&m_2 \ddot{x}_2 + c_2 (\dot{x}_2 - \dot{x}_1) + k_2 (x_2 - x_1) = 0.
+\end{align*}
+$$
+Taking the Laplace transform of the coupled equations (assuming zero initial conditions) 
+and solving for the transfer function relating the displacement $X(s)$ to the input force $F(s)$, we get the combined system's transfer function:
+$$
+H_{\text{TMD}}(s) = \frac{X(s)}{F(s)} = \frac{m_2 s^2 + c_2 s + k_2}{(m_1 s^2 + c_1 s + k_1)(m_2 s^2 + c_2 s + k_2) - (c_2 s + k_2)^2}
+$$
+This transfer function describes the dynamic response of the primary mass when influenced by the TMD,
+where again $H(s) = X(s)/F_{ext}(s)$ represents the amplitude gain and $s = i \omega_1$. The natural frequency of the forced system without the second mass is 
+$\omega_1 = \sqrt{k_1/m_1}$. We then choose $k_2 = \omega_2^2 m_2$ to hit the same frequency. 
+This means the Transfer function is only a function of $c_2$ and $s$. We can then proceed to find the minimum of $H(c_2,s)$ by following the gradient $-\nabla H(c_2,s)$ or using another optimization method to minimize the maximum value of the transfer function.
 
