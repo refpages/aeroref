@@ -92,20 +92,28 @@ If any eigenvalue has a positive real part, the equilibrium is unstable, causing
 Equilibria with eigenvalues that have zero real parts require further analysis.
 
 ## Stable and Unstable Manifolds
-A common scenario is that the matrix $\mathbf{A}$ of the linearized system has some positive and some negative eigenvalues.  For example
+A common scenario is that the matrix $\mathbf{A}$ of the linearized system has some positive and some negative eigenvalues. Consider the following dynamical system
+$$
+\begin{align*}
+\dot{x} &= \frac{x}{2} - y \\ 
+\dot{y} &= -x + \frac{y}{2} 
+\end{align*}
+$$ 
+This system has an equilibrium at $\mathbf{x}^*=(x,y)^*=(0,0)$. The linearized system evaluated at the equilibrium reads
 $$
 \dot{\boldsymbol{\xi}} \approx \mathbf{A}(\mathbf{x}^*) \boldsymbol{\xi} ,
 $$  
 with 
 $$
-\mathbf{A}(\mathbf{x}^*) = \begin{bmatrix} \frac{1}{2} & -1 \\ -1 & \frac{1}{2}\end{bmatrix},
+\mathbf{A}(\mathbf{x}^*) = \begin{bmatrix} \frac{1}{2} & -1 \\ -1 & \frac{1}{2}\end{bmatrix}.
 $$ 
-results in $\lambda_1 = \frac{3}{2}$ and $\lambda_2 = -\frac{1}{2}$ as well as $\boldsymbol{\nu}_1 = (-1,1)^T$ and $\boldsymbol{\nu}_2 = (1,1)^T$.
-In that case, the solutions are a composit of subspaces, for example
+$\mathbf{A}(\mathbf{x}^*)$ has eigenvalues $\lambda_1 = \frac{3}{2}$ and $\lambda_2 = -\frac{1}{2}$ as well as $\boldsymbol{\nu}_1 = (-1,1)^T$ and $\boldsymbol{\nu}_2 = (1,1)^T$.
+Solutions of the linearized equations are a composit of subspaces, for example
 $$
 \boldsymbol{\xi}(t) =  c_1 \begin{pmatrix}-1 \\ 1 \end{pmatrix} \,e^{\frac{3}{2} t} +  c_2 \begin{pmatrix}1 \\ 1 \end{pmatrix} \,e^{-\frac{1}{2} t}
 $$
 In this context, $W^s(x^*)=c_1 (-1,1)^T \,e^{3t/2}$ would correspond to the local representation of the **unstable manifold** and $W^u(x^*) = c_2 (1,1)^T \,e^{-t/2}$ to the **stable manifold** of a hyperbolic equilibrium point.
+![Stable and unstable manifolds for the example dynamical system.](images/manifolds_aeroref.png)
 
 Formally, if $\mathbf{x}(t)$ is a solution to the dynamical system with initial condition $\mathbf{x}_0$ we can define a
 
@@ -165,22 +173,26 @@ Common examples of bifurcations in one-parameter systems include:
 
 - **Saddle-node bifurcations**: Two equilibria (one stable, one unstable) "collide and annihilate" each other as $\mu$ crosses a critical value. Take for example
 
-$$
-\dot{x} = \mu - x^2.
-$$
+    $$
+    \dot{x} = \mu - x^2.
+    $$
 
-For $\mu < 0$, there are no real equilibria, since $\dot{x}=0$ implies that $x^*=\pm i\sqrt{\mu}$. For $\mu = 0$, a single equilibrium exists at $x = 0$. 
-For $\mu > 0$, two equilibria appear at $x = \pm \sqrt{\mu}$, one stable and one unstable.
+    For $\mu < 0$, there are no real equilibria, since $\dot{x}=0$ implies that $x^*=\pm i\sqrt{\mu}$. For $\mu = 0$, a single equilibrium exists at $x = 0$. 
+    For $\mu > 0$, two equilibria appear at $x = \pm \sqrt{\mu}$, one stable and one unstable.
+    The figure below shows this behavior for $\mu \in {1,0,-1}$
 
-- **Pitchfork bifurcations**: A symmetric equilibrium loses stability and two new equilibria emerge:
+![Saddle Node Bifurcation](images/saddle_node.png)
 
-$$
-\dot{x} = \mu x - x^3
-$$
 
-For $\mu < 0$, $x = 0$ is stable. For $\mu > 0$, $x = 0$ becomes unstable and two stable equilibria appear at $x = \pm \sqrt{\mu}$.
+- [Pitchfork bifurcations](https://math.libretexts.org/Bookshelves/Differential_Equations/Applied_Linear_Algebra_and_Differential_Equations_(Chasnov)/03%3A_III._Differential_Equations/11%3A_Nonlinear_Differential_Equations/11.02%3A_Bifurcation_Theory): A symmetric equilibrium loses stability and two new equilibria emerge:
 
-- **Hopf bifurcations**: An equilibrium point loses stability and a small-amplitude limit cycle emerges.
+    $$
+    \dot{x} = \mu x - x^3
+    $$
+
+    For $\mu < 0$, $x = 0$ is stable. For $\mu > 0$, $x = 0$ becomes unstable and two stable equilibria appear at $x = \pm \sqrt{\mu}$.
+
+- [Hopf bifurcations](https://www.youtube.com/watch?v=99nu8vlUnIk): An equilibrium point loses stability and a small-amplitude limit cycle emerges.
 
 ### Two-Parameter Bifurcations
 
@@ -190,5 +202,8 @@ $$
 \dot{x} = f(x, \mu, \nu),
 $$
 
-more complex bifurcation structures can occur. Curves in the $(\mu, \nu)$ parameter plane can separate regions with qualitatively different dynamics, and points where multiple bifurcation curves meet are called **codimension-2 bifurcations**. These can lead to richer phenomena such as **Bogdanov–Takens** or **cusp bifurcations**.
+more complex bifurcation structures can occur. 
+Curves in the $(\mu, \nu)$ parameter plane can separate regions with qualitatively different dynamics, 
+and points where multiple bifurcation curves meet are called **codimension-2 bifurcations**. 
+These can lead to richer phenomena such as [Bogdanov–Takens](https://www.youtube.com/watch?v=FTa4vit1ddQ) or [cusp bifurcations](https://en.wikipedia.org/wiki/Catastrophe_theory#Cusp_catastrophe).
 
