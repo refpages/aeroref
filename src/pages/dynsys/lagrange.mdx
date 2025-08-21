@@ -190,3 +190,51 @@ $$
 $$
 
 These correspond to simple projectile motion. The solution will depend on the initial conditions when the marble leaves the bowl.
+
+## Generalized Forces $ Q_j $
+
+In many mechanical systems, external forces (such as friction, tension, or control inputs) cannot be easily expressed in from of a potential energy function. 
+To include such **non-conservative forces** in Lagrangian mechanics, we introduce the concept of **generalized forces**.
+For a system with generalized coordinates $q_j$, the **generalized force** $Q_j$ associated with each coordinate appears on the right-hand side of the **extended** Euler-Lagrange equation:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_j} \right) - \frac{\partial L}{\partial q_j} = Q_j.
+$$
+
+If a system is subjected to external forces $\mathbf{F}^{(e)}$ acting at points with positions $\mathbf{r}$, then the generalized force $Q_j$ is
+
+$$
+Q_j = \sum_e \mathbf{F}^{(e)} \cdot \frac{\partial \mathbf{r}}{\partial q_j}.
+$$
+
+This formula projects the applied force $\mathbf{F}^{(e)}$ onto the **direction of virtual displacement** associated with the coordinate $q_j$. In other words, 
+$Q_j$ represents more or less how much work each applied force does along the direction of the generalized coordinate $q_j$.
+If, on the other hand, $\mathbf{F}^{(e)}$ is conservative (i.e., $\mathbf{F}^{(e)} = -\nabla V$), then $Q_j = -\partial V / \partial q_j$, and the force can be absorbed into the potential $V$. 
+
+---
+
+### Example: Damped Pendulum
+
+Consider a simple pendulum of length $\ell$, mass $m$, and angular coordinate $\theta$. 
+Suppose we add **viscous damping** (e.g., air resistance) proportional to the velocity of the pendulum ($F_\text{dmp} = -b v$).
+
+The Lagrangian without damping reads
+
+$$
+L = T - V = \frac{1}{2} m \ell^2 \dot{\theta}^2 - m g \ell \cos\theta.
+$$
+
+Since damping is not conservative we need first calculate $Q_{\theta}$ 
+  
+$$
+Q_\theta = -b \dot{\theta},
+$$
+
+and then add the generalized force to the Euler-Lagrange equation:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\theta}} \right) - \frac{\partial L}{\partial \theta} = Q_\theta
+\quad \Rightarrow \quad m \ell^2 \ddot{\theta} + b \dot{\theta} + m g \ell \sin\theta = 0
+$$
+
+This is the equation of motion for the damped pendulum, incorporating both conservative and non-conservative effects.
