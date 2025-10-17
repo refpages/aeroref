@@ -34,7 +34,7 @@ The above equations are sufficient to describe the translational kinematics of t
 --- 
 
 ## Kinetic and Potential Energy
-In order to construct the Lagrangian $L = T - V$  we need to deterimine the kinetic ($T$) and potential energy ($V$) of the system.
+In order to construct the Lagrangian $L = T - V$  we need to determine the kinetic ($T$) and potential energy ($V$) of the system.
 The total kinetic energy can be expressed as the sum of the rotational and translational kinetic energy
 
 $$
@@ -166,7 +166,7 @@ $$
 
 ## Trajectory Planning
 To move the robotic arm smoothly from its initial configuration to the target configuration, we plan trajectories for the joint angles $\theta_1(t)$ and $\theta_2(t)$ over time and calculate the torques $\tau_1$ and $\tau_2$ that enable such motion.  
-A common, even-though somewhat counterintuitive approach is **not** to solve the equations of motion for the joint angles but to assert that all angles must behave in a way that smooths transitions between the initial and final positions.
+A common, even though somewhat counterintuitive approach is **not** to solve the equations of motion for the joint angles but to assert that all angles must behave in a way that smooths transitions between the initial and final positions.
 In other words, we postulate that a joint angle $\theta(t)$ must be representable through a cubic polynomial:
 
 $$
@@ -245,13 +245,13 @@ $$
 \end{align*}
 $$
 
-Here, $\text{atan2}(y,x)$ is the quadrant corrected acrtangent.
+Here, $\text{atan2}(y,x)$ is the quadrant corrected arctangent.
 Inserting numerical values for $(x_e,y_e)(0)=(2,0)\,\text{m}$ and $(x_e,y_e)(T)=(1,1.5)\,\text{m}$ we find 
 
 $$
 \begin{align*}
 &\theta_1(0) = 0,   && \theta_2(0) = 0, \\
-&\theta_1(T) \approx 0.140,   & &\theta_2(T) \approx 0.896.
+&\theta_1(T) \approx 0.535,   & &\theta_2(T) \approx 0.896.
 \end{align*}
 $$
 
@@ -264,7 +264,7 @@ Then, based on the inverse Kinematics we have
 $$
 \begin{align*}
 &\theta_1(0) = 0,   && \theta_2(0) = 0, \\
-&\theta_1(T) \approx 0.140,   & &\theta_2(T) \approx 0.896.
+&\theta_1(T) \approx 0.535,   & &\theta_2(T) \approx 0.896.
 \end{align*}
 $$
 Since we also want the arm to be at rest before and after the maneuver we add
@@ -291,16 +291,16 @@ $\theta_1(0) = 0,\, \dot{\theta}_1(0) = 0$ imply that
 $$
 a_0 = 0, \quad a_1 = 0.
 $$
-The boundary contiions $\theta_1(T) \approx 0.140$ and  $\dot{\theta}_1(T) = 0$ result in 
+The boundary conditions $\theta_1(T) \approx 0.535$ and  $\dot{\theta}_1(T) = 0$ result in 
 $$
 \begin{align*}
-a_2 T^2 + a_3 T^3 &=  0.140, \\
+a_2 T^2 + a_3 T^3 &=  0.535, \\
 2 a_2 T + 3 a_3 T^2 &= 0.
 \end{align*}
 $$
 Since we know $T=2\,\text{s}$ we can solve for the coefficients
 $$
-a_2 = \frac{0.42}{T^2} = 0.105, \quad a_3 = -\frac{0.28}{T^3}=-0.035
+a_2 = \frac{1.6}{T^2} = 0.4, \quad a_3 = -\frac{1.07}{T^3}=-0.134
 $$
 in units of rad/s$^2$ and rad/s$^3$, respectively.
 
@@ -314,10 +314,10 @@ The final equations for the joint angles and their derivatives in units of rad, 
 <Result title='Planned Trajectory'>
 $$
 \begin{align*}
-&\theta_1(t) =  0.105 t^2 -0.035 t^3, \quad \dot{\theta}_1(t) =  0.210 t - 0.105 t^2,
-\quad \ddot{\theta}_1(t) =  0.210 - 0.210 t, \\
-&\theta_2(t) =  0.671 t^2 -0.224 t^3, \quad \dot{\theta}_2(t) =  1.343 t - 0.671 t^2,
-\quad \ddot{\theta}_2(t) =  1.343 - 1.343 t.
+&\theta_1(t) =  0.4 t^2 -0.134 t^3, \quad \dot{\theta}_1(t) =  0.8 t - 0.4 t^2,
+\quad \ddot{\theta}_1(t) =  0.8 - 0.8 t, \\
+&\theta_2(t) =  0.671 t^2 -0.224 t^3, \quad \dot{\theta}_2(t) =  1.342 t - 0.671 t^2,
+\quad \ddot{\theta}_2(t) =  1.342 - 1.344 t.
 \end{align*}
 $$
 </Result>
@@ -334,9 +334,9 @@ This results in
 
 $$
 \begin{align*}
-&M(\theta) = \begin{bmatrix} 2.65 + 2 \cos{\theta_2} & 0.6125 \\ 0.6125 & 1.05 \end{bmatrix}, \\
-&C(\theta, \dot{\theta}) = \begin{bmatrix} 0 & -0.899\,(2\dot{\theta}_1+\dot{\theta}_2) \\ -0.899 \dot{\theta}_1 & 0 \end{bmatrix}, \\
-&G(\theta) = \begin{bmatrix} 19.62 \cos{\theta_1} + 9.81 \cos{(\theta_1+\theta_2)} \\ 9.81 \cos{(\theta_1+\theta_2)}  \end{bmatrix}.
+&M(\theta) = \begin{bmatrix} 1.9 + \cos{\theta_2} & 0.3+0.5\cos{\theta_2} \\0.3+0.5\cos{\theta_2} & 0.3 \end{bmatrix}, \\
+&C(\theta, \dot{\theta}) = \begin{bmatrix} 0 & -\frac{1}{2}\,(2\dot{\theta}_1+\dot{\theta}_2)\sin{\theta_2} \\ \frac{1}{2}\sin{\theta_2} \dot{\theta}_1 & 0 \end{bmatrix}, \\
+&G(\theta) = \begin{bmatrix} 19.62 \cos{\theta_1} + \frac{9.81}{2} \cos{(\theta_1+\theta_2)} \\ \frac{9.81}{2} \cos{(\theta_1+\theta_2)}  \end{bmatrix}.
 \end{align*}
 $$
 
@@ -344,11 +344,12 @@ Inserting the polynomials for $\theta_1, \theta_2, \dot{\theta}_1, \dot{\theta}_
 
 $$
 \begin{align*}
-\tau_1 & = 1.378 - 1.379 t - 2.126 t^2 + 2.129 t^3 - 0.533 t^4 \\
-&+ 9.81 \cos(0.776 t^2 - 0.259 t^3) + 0.42 \cos(0.671 t^2 - 0.224 t^3) \\
-& -0.42 t \cos(0.671 t^2 - 0.224 t^3) + 19.62 \cos(0.105 t^2 - 0.035 t^3),\\
- \tau_2 &=1.538 - 1.540 t + 0.040 t^2 - 0.040 t^3 \\
- & + 0.010 t^4 + 9.81 \cos{(0.776 t^2 - 0.259 t^3)}.
+\tau_1 & = 1.9226 - 1.9308 t + 4.905 \cos(1.071 t^2 - 0.358 t^3)  \\
+ & + 1.471 \cos(0.671 t^2 - 0.224 t^3) - 1.476 t \cos(0.671 t^2 - 0.224 t^3) +  19.62 \cos(0.4 t^2 - 0.134 t^3) \\ 
+ & - 1.974 t^2 \sin(0.671 t^2 - 0.224 t^3) + 1.979 t^3 \sin(0.671 t^2 - 0.224 t^3) -  0.4959 t^4 \sin(0.671 t^2 - 0.224 t^3),\\
+ \tau_2 &=0.6426 - 0.6444 t + 4.905 \cos(1.071 t^2 - 0.358 t^3) \\
+ & +0.4 \cos(0.671 t^2 - 0.224 t^3) - 0.402 t \cos(0.671 t^2 - 0.224 t^3) + 0.32 t^2 \sin(0.671 t^2 - 0.224 t^3) \\
+ &-  0.3216 t^3 \sin(0.671 t^2 - 0.224 t^3) + 0.0808 t^4 \sin(0.671 t^2 - 0.224 t^3).
  \end{align*}
 $$
 
