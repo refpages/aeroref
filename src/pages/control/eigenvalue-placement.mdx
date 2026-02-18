@@ -481,7 +481,9 @@ Remember, although this method only works for systems with exactly one input (i.
 
 ## How to decide when eigenvalue placement is possible
 
-We say that a system is **controllable** if eigenvalue placement is possible. We have seen eigenvalue placement with Ackermann's method (for the special case when $n_u = 1$) is only possible when the controllability matrix $W$ is invertible. Here is a generalization of that same result to any system:
+We say that a system is **controllable** if eigenvalue placement is possible. An equivalent viewpoint is **finite-time reachability**: the system is controllable if, for any initial state $x(0)=x_0$ and any desired state $x_\mathrm{des}$, there exists a finite time $T>0$ and an input $u(t)$ on $[0,T]$ such that $x(T)=x_\mathrm{des}$.
+
+We have seen eigenvalue placement with Ackermann's method (for the special case when $n_u = 1$) is only possible when the controllability matrix $W$ is invertible. Here is a generalization of that same result to any system:
 
 
 <Result title="Controllability">
@@ -509,6 +511,7 @@ Now, suppose there is more than one input, so $n_u > 1$. Then, $B$ has size $n_x
 
 If $W$ is full rank, the system is controllable, and eigenvalue placement will work. If $W$ is not full rank, the system is not controllable, and eigenvalue placement will not work.
 
-We can actually say a little more than this. It turns out that if the controllability matrix $W$ is not full rank, then although we cannot place *all* of the system's eigenvalues, we can place *some* of these eigenvalues, while the others will remain in the same location no matter what gain matrix $K$ we choose. The eigenvalues we *can* place are often called "controllable eigenvalues" or "controllable modes," while the eigenvalues we can *not* place are often called "uncontrollable eigenvalues" or "uncontrollable modes." If the rank of $W$ is $n_x - 1$, then we can place $n_x - 1$ eigenvalues, and $1$ eigenvalue is uncontrollable. If the rank of $W$ is $n_x - 2$, then we can place $n_x - 2$ eigenvalues, and $2$ eigenvalues are uncontrollable. And so forth.
+We can actually say a little more than this. It turns out that if the controllability matrix $W$ is not full rank, then although we cannot place *all* of the system's eigenvalues, we can place *some* of these eigenvalues, while the others will remain in the same location no matter what gain matrix $K$ we choose. The eigenvalues we *can* place are often called "controllable eigenvalues" or "controllable modes," while the eigenvalues we can *not* place are often called "uncontrollable eigenvalues" or "uncontrollable modes." If the rank of $W$ is $n_x - 1$, then we can place $n_x - 1$ eigenvalues, and $1$ eigenvalue is uncontrollable. If the rank of $W$ is $n_x - 2$, then we can place $n_x - 2$ eigenvalues, and $2$ eigenvalues are uncontrollable. And so forth. The uncontrollable eigenvalues are sometimes called **immovable eigenvalues**: if $\lambda$ is an immovable eigenvalue, then $\lambda$ remains an eigenvalue of $(A-BK)$ for *every* choice of gain matrix $K$ (i.e., no state feedback can move it).
+
 
 
