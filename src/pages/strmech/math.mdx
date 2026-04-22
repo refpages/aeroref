@@ -22,7 +22,7 @@ A *vector* is a directed line segment, possessing the qualities of both magnitud
 In mathematical notation, the vector, $\vec{A}$, can be written as follows:
 
 $$
-\vec{A} = A_x \vec{e_x} + A_y \vec{e_y} + A_z \vec{e_z}
+\vec{A} = A_x \vec{e}_x + A_y \vec{e}_y + A_z \vec{e}_z
 $$
 
 where $\vec{e_x}$, $\vec{e_y}$, and $\vec{e_z}$ are the unit vectors (magnitude of one) in the $x$, $y$, and $z$ directions, respectively. $A_x$, $A_y$, and $A_z$ are the scalar values corresponding to each of these three unit vectors.
@@ -37,16 +37,16 @@ $$
 Let another vector, $\vec{B}$ be given as:
 
 $$
-\vec{B} = B_x \vec{e_x} + B_y \vec{e_y} + B_z \vec{e_z},
+\vec{B} = B_x \vec{e}_x + B_y \vec{e}_y + B_z \vec{e}_z,
 $$
 
 two vectors can be added such that:
 
 $$
-\vec{A} + \vec{B} = (A_x + B_x) \hat{i} + (A_y + B_y) \hat{j} + (A_z + B_z) \hat{k}.
+\vec{A} + \vec{B} = (A_x + B_x) \hat{\imath} + (A_y + B_y) \hat{\jmath} + (A_z + B_z) \hat{k}.
 $$
 
-**Note:** $\hat{i}$, $\hat{j}, and $\hat{k}$ are an alternative and common way to denote the unit vectors $\vec{e_x}$, $\vec{e_y}$, and $\vec{e_z}$, respectively.
+**Note:** $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$ are an alternative and common way to denote the unit vectors $\vec{e_x}$, $\vec{e_y}$, and $\vec{e_z}$, respectively.
 Vectors can also be multiplied by means of a scalar, vector, or dyadic product. A scalar product of two vectors, also known as a *dot product*, will yield a scalar value and is given as:
 
 $$
@@ -58,12 +58,12 @@ A vector product, also known as a *cross product*, yields a vector that is ortho
 $$
 \vec{A} \times \vec{B} =
 \begin{vmatrix} 
-\hat{i} & \hat{j} & \hat{k} \\ 
+\hat{\imath} & \hat{\jmath} & \hat{k} \\ 
 A_x & A_y & A_z \\ 
 B_x & B_y & B_z
 \end{vmatrix}
-= (A_y B_z - A_z B_y) \hat{i} 
- - (A_x B_z - A_z B_x) \hat{j} 
+= (A_y B_z - A_z B_y) \hat{\imath} 
+ - (A_x B_z - A_z B_x) \hat{\jmath} 
  + (A_x B_y - A_y B_x) \hat{k}
 $$
 
@@ -86,50 +86,42 @@ A *scalar field* is defined by a scalar quantity expressed as a function of cart
 
 A *vector field* is formed when the components of a vector depend on the spatial coordinates of the vector. An example of a vector field could be a weather map showing the wind direction at different points in space. \\
 
-Scalar and vector fields have many useful applications, but to be able to explore these applications, the fundamentals of vector calculus must be understood. The del/nabla operator, $\nabla$, can eb applied to both scalars and vectors in several ways in order to obtain useful information about a given value or field.
+Scalar and vector fields have many useful applications, but to be able to explore these applications, the fundamentals of vector calculus must be understood. The del/nabla operator, $\nabla,$ can be applied to both scalars and vectors in several ways in order to obtain useful information about a given value or field.
 
-The *gradient* of a scalar, $f$, yields a vector, defined as follows:
+The *gradient of a scalar*, $f$, yields a vector, defined as follows:
 
 $$
-\nabla f = \frac{\partial f}{\partial x} \hat{i} + \frac{\partial f}{\partial y} \hat{j} + \frac{\partial f}{\partial z} \hat{k}
+\nabla f = \frac{\partial f}{\partial x} \hat{\imath} + \frac{\partial f}{\partial y} \hat{\jmath} + \frac{\partial f}{\partial z} \hat{k}
 $$
 
-The **divergence** of a vector, $\vec{A}$, is given as the dot product between the vector and the del operator and yields a scalar as follows:
+The *divergence of a vector*, $\vec{A}$, is given as the dot product between the vector and the del operator and yields a scalar as follows:
 
 $$
 \nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}
 $$
 
-The **curl** of a vector, $\vec{A}$, also yields a vector and is given as the cross product between the vector and the del operator as follows:
+The *curl of a vector*, $\vec{A}$, also yields a vector and is given as the cross product between the vector and the del operator as follows:
 
 $$
     \nabla \times \vec{A} = \begin{vmatrix}
-\hat{i} & \hat{j} & \hat{k} \\
+\hat{\imath} & \hat{\jmath} & \hat{k} \\
 \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 
 A_x & A_y & A_z 
-\end{vmatrix} = \left( \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z} \right) \hat{i} - \left( \frac{\partial A_z}{\partial x} - \frac{\partial A_x}{\partial z} \right) \hat{j} + \left( \frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y} \right) \hat{k}
+\end{vmatrix} = \left( \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z} \right) \hat{\imath} - \left( \frac{\partial A_z}{\partial x} - \frac{\partial A_x}{\partial z} \right) \hat{\jmath} + \left( \frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y} \right) \hat{k}
 $$
 
-The **gradient** of a vector, $\vec{A}$, yields a tensor and is given as the dyadic product between the vector and the del operator as follows:
+The *gradient of a vector*, $\vec{A}$, yields a tensor and is given as the dyadic product between the vector and the del operator as follows:
 
 $$
-    \nabla \otimes \vec{A} = \begin{bmatrix}
+\nabla \otimes \vec{A} = \begin{bmatrix}
 \frac{\partial A_x}{\partial x} & \frac{\partial A_y}{\partial x} & \frac{\partial A_z}{\partial x} \\
 \frac{\partial A_x}{\partial y} & \frac{\partial A_y}{\partial y} & \frac{\partial A_z}{\partial y} \\
 \frac{\partial A_x}{\partial z} & \frac{\partial A_y}{\partial z} & \frac{\partial A_z}{\partial z}
 \end{bmatrix}
 $$
 
-
-$$
-\centering
-\includegraphics[angle=0, width=4in]{Figures/Chapter 1 Figures/vec field.png}
-\vspace{-2mm}
-\caption{A scalar field with lines of constant value plotted as well as the gradient vectors of the field at various points.}
-\vspace{-3mm}
-\label{field}
-$$
+(A scalar field with lines of constant value plot)
 
 (Scalar field vector diagram)
 
-The figure displays a sample scalar field. The plotted lines represent trajectories where the value of the scalar field is constant. Each vector plotted in the field is the gradient taken at point of the base of the vector. The gradient vectors are always orthogonal to the lines of constant value. This is because the gradient vector points toward the direction of greatest increase of the field, which is always orthogonal to the direction of no change.
+The figure displays a sample scalar field. The plotted lines represent trajectories where the value of the scalar field is constant. Each vector plotted in the field is the gradient taken at the point of the base of the vector. The gradient vectors are always orthogonal to the lines of constant value. This is because the gradient vector points toward the direction of greatest increase of the field, which is always orthogonal to the direction of no change.
